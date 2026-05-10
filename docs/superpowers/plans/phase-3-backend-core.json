@@ -1,0 +1,289 @@
+{
+  "phase": 3,
+  "name": "后端核心业务",
+  "priority": "P0",
+  "tasks": [
+    {
+      "id": "3.1",
+      "name": "user.login 云函数",
+      "description": "微信登录/注册，获取 openid，创建用户记录，返回 JWT token",
+      "files": [
+        {
+          "path": "cloudfunctions/user/login/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/user/login/package.json",
+          "action": "create"
+        }
+      ],
+      "cloudFunction": {
+        "name": "user.login",
+        "entryParams": ["code"],
+        "output": {
+          "success": true,
+          "data": {
+            "user_id": "string",
+            "openid": "string",
+            "nickname": "string",
+            "phone": "string",
+            "member_level": 1,
+            "token": "jwt_string"
+          }
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 cloudfunctions/user/login/ 目录",
+          "verify": "目录存在"
+        },
+        {
+          "order": 2,
+          "action": "创建 index.js（调用 code2Session、查询/创建用户、生成 token）",
+          "verify": "返回正确格式的用户信息"
+        },
+        {
+          "order": 3,
+          "action": "创建 package.json",
+          "verify": "依赖正确"
+        },
+        {
+          "order": 4,
+          "action": "上传云函数并测试",
+          "verify": "微信开发者工具中可调用成功"
+        }
+      ]
+    },
+    {
+      "id": "3.2",
+      "name": "product.* 云函数",
+      "description": "商品查询云函数：getCategories、getList、getDetail",
+      "files": [
+        {
+          "path": "cloudfunctions/product/getCategories/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/product/getList/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/product/getDetail/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunctions": [
+        {
+          "name": "product.getCategories",
+          "entryParams": [],
+          "output": { "success": true, "data": "array" }
+        },
+        {
+          "name": "product.getList",
+          "entryParams": ["category_id", "page", "pageSize", "keyword"],
+          "output": { "success": true, "data": { "list": [], "total": 0 } }
+        },
+        {
+          "name": "product.getDetail",
+          "entryParams": ["id"],
+          "output": { "success": true, "data": { "id": "", "name": "", "specifications": [], "skus": [] } }
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 getCategories（查询分类列表，按 sort 排序）",
+          "verify": "返回分类数据"
+        },
+        {
+          "order": 2,
+          "action": "创建 getList（支持分页和分类筛选、关键词搜索）",
+          "verify": "分页和筛选正确"
+        },
+        {
+          "order": 3,
+          "action": "创建 getDetail（返回商品详情 + SKU 列表）",
+          "verify": "商品详情完整"
+        },
+        {
+          "order": 4,
+          "action": "上传所有云函数并测试",
+          "verify": "可正常调用"
+        }
+      ]
+    },
+    {
+      "id": "3.3",
+      "name": "sku.getStock 云函数",
+      "description": "查询 SKU 库存状态（不暴露精确数量）",
+      "files": [
+        {
+          "path": "cloudfunctions/sku/getStock/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunction": {
+        "name": "sku.getStock",
+        "entryParams": ["sku_id"],
+        "output": { "success": true, "data": { "sku_id": "", "available": true, "price": 0 } }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 getStock（返回状态，不暴露精确库存）",
+          "verify": "available 状态正确"
+        },
+        {
+          "order": 2,
+          "action": "上传云函数并测试",
+          "verify": "可正常调用"
+        }
+      ]
+    },
+    {
+      "id": "3.4",
+      "name": "order.create 云函数",
+      "description": "订单创建（核心），包含库存原子锁定、预约时段锁定、事务操作",
+      "files": [
+        {
+          "path": "cloudfunctions/order/create/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunction": {
+        "name": "order.create",
+        "entryParams": ["user_id", "items", "delivery_type", "reservation_date", "reservation_time_slot", "receiver_id", "remark"],
+        "output": { "success": true, "data": { "order_id": "", "order_no": "", "total_amount": 0 } },
+        "keyLogic": [
+          "检查 available = stock - reservation_count >= quantity",
+          "事务内原子锁定 reservation_count += quantity",
+          "事务内锁定预约时段 reserved_count += 1",
+          "创建订单主记录和订单明细"
+        ]
+      },
+      "errorCodes": ["STOCK_SHORTAGE", "SLOT_FULL", "INVALID_DELIVERY_TYPE", "ADDRESS_NOT_FOUND"],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 order/create 云函数",
+          "verify": "库存不足时正确抛出错误"
+        },
+        {
+          "order": 2,
+          "action": "实现事务内的库存锁定和预约时段锁定",
+          "verify": "并发下不会超卖"
+        },
+        {
+          "order": 3,
+          "action": "上传云函数并测试",
+          "verify": "订单创建成功，库存正确锁定"
+        }
+      ]
+    },
+    {
+      "id": "3.5",
+      "name": "order.pay / order.payCallback 云函数",
+      "description": "微信支付：发起支付（统一下单）和支付回调处理",
+      "files": [
+        {
+          "path": "cloudfunctions/order/pay/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/order/payCallback/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/utils/pay.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunctions": [
+        {
+          "name": "order.pay",
+          "entryParams": ["order_id", "user_id"],
+          "output": { "success": true, "data": { "timeStamp": "", "nonceStr": "", "package": "", "signType": "RSA", "paySign": "" } }
+        },
+        {
+          "name": "order.payCallback",
+          "entryParams": ["微信回调数据（XML解析后的JSON）"],
+          "output": { "return_code": "SUCCESS", "return_msg": "OK" }
+        }
+      ],
+      "payCallbackLogic": [
+        "验证签名",
+        "幂等检查（status !== 0 则跳过）",
+        "更新订单状态 status = 1",
+        "扣减实际库存 stock -= qty, reservation_count -= qty",
+        "发送订阅消息通知用户"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 pay.js 工具（verifyPayCallback, unifiedOrder）",
+          "verify": "签名验证正确"
+        },
+        {
+          "order": 2,
+          "action": "创建 order.pay（校验订单状态，调用统一下单，返回支付参数）",
+          "verify": "支付参数正确"
+        },
+        {
+          "order": 3,
+          "action": "创建 order.payCallback（签名验证、幂等、状态更新、库存扣减）",
+          "verify": "回调处理正确，库存不超卖"
+        },
+        {
+          "order": 4,
+          "action": "上传所有云函数并测试",
+          "verify": "支付流程完整"
+        }
+      ]
+    },
+    {
+      "id": "3.6",
+      "name": "reservation.* 云函数",
+      "description": "预约时段：getSlots（获取可用时段）、reserve（锁定时段）",
+      "files": [
+        {
+          "path": "cloudfunctions/reservation/getSlots/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/reservation/reserve/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunctions": [
+        {
+          "name": "reservation.getSlots",
+          "entryParams": ["date"],
+          "output": { "success": true, "data": { "date": "", "slots": [{ "time_slot": "", "capacity": 0, "reserved": 0, "available": true }] } }
+        },
+        {
+          "name": "reservation.reserve",
+          "entryParams": ["user_id", "date", "time_slot"],
+          "output": { "success": true, "data": { "reserved": true } }
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 getSlots（查询日期可用时段，计算 available = capacity > reserved）",
+          "verify": "时段列表正确"
+        },
+        {
+          "order": 2,
+          "action": "创建 reserve（原子更新 reserved_count += 1）",
+          "verify": "时段锁定成功"
+        },
+        {
+          "order": 3,
+          "action": "上传所有云函数并测试",
+          "verify": "可正常调用"
+        }
+      ]
+    }
+  ]
+}

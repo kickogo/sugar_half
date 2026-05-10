@@ -1,0 +1,209 @@
+{
+  "phase": 4,
+  "name": "前端核心页面",
+  "priority": "P0",
+  "tasks": [
+    {
+      "id": "4.1",
+      "name": "首页",
+      "description": "实现首页：banner 轮播 + 分类入口 + 商品网格列表",
+      "files": [
+        {
+          "path": "pages/index/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/index/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/index/index.wxss",
+          "action": "create"
+        }
+      ],
+      "components": {
+        "banner": "轮播图组件",
+        "categoryGrid": "分类入口网格（图标 + 名称）",
+        "productGrid": "商品卡片网格（图片 + 名称 + 价格 + 标签）"
+      },
+      "pageLogic": {
+        "onLoad": ["并行调用 getCategories + getList"],
+        "onPullDownRefresh": ["刷新数据"],
+        "onReachBottom": ["加载更多"],
+        "onCategoryTap": ["跳转分类页"],
+        "onProductTap": ["跳转商品详情页"]
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（API 调用、数据处理、事件处理）",
+          "verify": "数据加载正确，下拉刷新和分页正常"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（轮播图 + 分类 + 商品列表布局）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    },
+    {
+      "id": "4.2",
+      "name": "商品详情页",
+      "description": "实现商品详情页：图片轮播 + SKU 选择器 + 预约选择 + 底部操作栏",
+      "files": [
+        {
+          "path": "pages/product/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/product/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/product/index.wxss",
+          "action": "create"
+        }
+      ],
+      "pageLogic": {
+        "onLoad": ["调用 getDetail 获取商品详情"],
+        "calculateSpecAvailability": "根据已选规格计算各选项可用性",
+        "checkSkuAvailability": "检查特定规格组合是否有库存",
+        "calculateSkuPrice": "计算选中 SKU 的价格",
+        "onSpecSelect": "规格选项点击处理",
+        "onQuantityChange": "数量增减",
+        "onAddToOrder": "加入订单并跳转订单确认页"
+      },
+      "skuSelector": {
+        "dataStructure": ["selectedSpecs: {}", "specOptions: [{name, options: [{value, price_mod, available}]}]"],
+        "algorithm": "联动计算：选中新规格后，重新计算其他规格的可用性"
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（SKU 选择逻辑、价格计算、事件处理）",
+          "verify": "SKU 联动正确，价格计算正确"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（图片轮播 + 规格选项 + 预约选择 + 底部操作栏）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    },
+    {
+      "id": "4.3",
+      "name": "订单确认页",
+      "description": "实现订单确认页：配送方式选择 + 地址选择 + 预约确认 + 价格明细 + 提交",
+      "files": [
+        {
+          "path": "pages/order/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/order/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/order/index.wxss",
+          "action": "create"
+        }
+      ],
+      "pageLogic": {
+        "onLoad": ["接收商品信息、预约信息，初始化价格"],
+        "onDeliveryTypeChange": ["切换配送方式（自提/配送）"],
+        "onSelectAddress": ["跳转地址选择页"],
+        "onModifyReservation": ["跳转预约页修改"],
+        "validate": ["校验配送地址、预约时间必填"],
+        "onSubmit": ["调用 order.create 创建订单，跳转支付页"]
+      },
+      "priceCalculation": {
+        "goodsAmount": "商品数量 * 单价",
+        "deliveryFee": "自提=0，配送=1000（分）",
+        "discount": "优惠券（暂未实现）",
+        "total": "goodsAmount + deliveryFee - discount"
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（配送方式切换、地址选择、表单校验、订单创建）",
+          "verify": "表单校验正确，订单创建成功"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（配送方式 + 地址/自提点 + 预约信息 + 价格明细 + 提交按钮）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    },
+    {
+      "id": "4.4",
+      "name": "支付页",
+      "description": "实现支付页：订单信息展示 + 30 分钟倒计时 + wx.requestPayment + 支付结果处理",
+      "files": [
+        {
+          "path": "pages/payment/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/payment/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/payment/index.wxss",
+          "action": "create"
+        }
+      ],
+      "pageLogic": {
+        "onLoad": ["初始化订单信息，启动倒计时"],
+        "startCountdown": ["30 分钟倒计时，每秒更新 countdownText"],
+        "onPay": ["调用 paymentService.pay 发起支付"],
+        "handlePayTimeout": ["倒计时结束提示并跳转首页"],
+        "onCancelOrder": ["取消订单并跳转订单列表"],
+        "onRetry": ["重新发起支付"]
+      },
+      "payFlow": {
+        "1_callPayAPI": "调用 order.pay 获取支付参数",
+        "2_callWxPayment": "调用 wx.requestPayment 唤起微信支付",
+        "3_handleResult": "支付成功跳转订单详情，失败显示错误可重试"
+      },
+      "states": {
+        "pending": "待支付状态，显示支付按钮",
+        "paying": "支付中，显示加载中",
+        "success": "支付成功，跳转成功页",
+        "failed": "支付失败，显示错误和重试按钮"
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（倒计时、支付发起、结果处理、超时处理）",
+          "verify": "倒计时正确，支付流程完整"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（订单信息 + 倒计时 + 支付按钮 + 状态展示）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    }
+  ]
+}

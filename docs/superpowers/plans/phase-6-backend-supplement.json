@@ -1,0 +1,164 @@
+{
+  "phase": 6,
+  "name": "后端补充功能",
+  "priority": "P1",
+  "tasks": [
+    {
+      "id": "6.1",
+      "name": "user.* 地址管理云函数",
+      "description": "用户地址管理云函数：getAddressList、addAddress、setDefaultAddress",
+      "files": [
+        {
+          "path": "cloudfunctions/user/getAddressList/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/user/addAddress/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/user/setDefaultAddress/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunctions": [
+        {
+          "name": "user.getAddressList",
+          "entryParams": ["user_id"],
+          "output": { "success": true, "data": [{ "_id": "", "name": "", "phone": "", "province": "", "city": "", "district": "", "detail": "", "is_default": 0 }] }
+        },
+        {
+          "name": "user.addAddress",
+          "entryParams": ["user_id", "name", "phone", "province", "city", "district", "detail", "is_default"],
+          "output": { "success": true, "data": { "address_id": "" } }
+        },
+        {
+          "name": "user.setDefaultAddress",
+          "entryParams": ["user_id", "id"],
+          "output": { "success": true, "data": { "success": true } }
+        }
+      ],
+      "addAddressLogic": [
+        "参数校验（必填字段）",
+        "如果 is_default=1，先将用户其他地址的 is_default 设为 0",
+        "插入新地址记录"
+      ],
+      "setDefaultAddressLogic": [
+        "将用户所有地址的 is_default 设为 0",
+        "将指定地址的 is_default 设为 1"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 getAddressList",
+          "verify": "返回用户地址列表"
+        },
+        {
+          "order": 2,
+          "action": "创建 addAddress（支持设置默认）",
+          "verify": "新增成功，默认地址正确"
+        },
+        {
+          "order": 3,
+          "action": "创建 setDefaultAddress",
+          "verify": "默认地址切换正确"
+        },
+        {
+          "order": 4,
+          "action": "上传所有云函数并测试",
+          "verify": "可正常调用"
+        }
+      ]
+    },
+    {
+      "id": "6.2",
+      "name": "order.getList / order.getDetail 云函数",
+      "description": "订单查询云函数：getList（订单列表）、getDetail（订单详情）",
+      "files": [
+        {
+          "path": "cloudfunctions/order/getList/index.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/order/getDetail/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunctions": [
+        {
+          "name": "order.getList",
+          "entryParams": ["user_id", "status", "page", "pageSize"],
+          "output": { "success": true, "data": { "list": [{ "order_id": "", "order_no": "", "status": 0, "total_amount": 0, "created_at": "" }], "total": 0, "page": 1, "pageSize": 10 } }
+        },
+        {
+          "name": "order.getDetail",
+          "entryParams": ["order_id", "user_id"],
+          "output": { "success": true, "data": { "order_id": "", "order_no": "", "status": 0, "items": [], "total_amount": 0, "pay_amount": 0, "delivery_type": 1, "reservation_date": "", "reservation_time_slot": "", "created_at": "", "pay_time": "" } }
+        }
+      ],
+      "getDetailLogic": [
+        "查询订单主记录",
+        "查询订单明细（order_items）",
+        "组装返回数据（订单 + 商品明细）"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 getList（支持状态筛选和分页）",
+          "verify": "返回订单列表，分页正确"
+        },
+        {
+          "order": 2,
+          "action": "创建 getDetail（返回订单主记录 + 明细）",
+          "verify": "返回完整订单详情"
+        },
+        {
+          "order": 3,
+          "action": "上传所有云函数并测试",
+          "verify": "可正常调用"
+        }
+      ]
+    },
+    {
+      "id": "6.3",
+      "name": "order.cancel 云函数",
+      "description": "订单取消云函数：取消订单并释放锁定的库存和预约时段",
+      "files": [
+        {
+          "path": "cloudfunctions/order/cancel/index.js",
+          "action": "create"
+        }
+      ],
+      "cloudFunction": {
+        "name": "order.cancel",
+        "entryParams": ["order_id", "user_id"],
+        "output": { "success": true, "data": { "cancelled": true } }
+      },
+      "cancelLogic": [
+        "校验订单存在且属于该用户",
+        "校验订单状态为待付款（status = 0）",
+        "事务操作：更新订单状态为已取消（status = 5）",
+        "释放库存（reservation_count -= quantity）",
+        "释放预约时段（reserved_count -= 1）"
+      ],
+      "errorCodes": ["ORDER_NOT_FOUND", "ORDER_STATUS_INVALID", "CANCEL_FAILED"],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 order.cancel 云函数",
+          "verify": "取消成功，库存和时段正确释放"
+        },
+        {
+          "order": 2,
+          "action": "上传云函数并测试",
+          "verify": "订单状态变为已取消，库存正确释放"
+        },
+        {
+          "order": 3,
+          "action": "测试并发场景（取消和支付同时到达）",
+          "verify": "状态流转正确"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "phase": 5,
+  "name": "前端个人中心",
+  "priority": "P1",
+  "tasks": [
+    {
+      "id": "5.1",
+      "name": "个人中心主页",
+      "description": "实现个人中心主页：用户信息卡片 + 功能入口列表",
+      "files": [
+        {
+          "path": "pages/my/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/my/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/index.wxss",
+          "action": "create"
+        }
+      ],
+      "components": {
+        "userCard": "用户头像 + 昵称 + 会员等级",
+        "menuList": [
+          { "id": "orders", "title": "我的订单", "icon": "order.png", "badge": null },
+          { "id": "address", "title": "收货地址", "icon": "address.png", "badge": null },
+          { "id": "member", "title": "会员中心", "icon": "member.png", "badge": null }
+        ]
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（用户信息加载、菜单点击跳转）",
+          "verify": "用户信息正确显示"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（用户卡片 + 功能入口列表）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    },
+    {
+      "id": "5.2",
+      "name": "订单列表页",
+      "description": "实现订单列表页：状态 Tab 筛选 + 订单卡片列表",
+      "files": [
+        {
+          "path": "pages/my/orderList/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/my/orderList/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/orderList/index.wxss",
+          "action": "create"
+        }
+      ],
+      "tabs": [
+        { "status": null, "title": "全部" },
+        { "status": 0, "title": "待付款" },
+        { "status": 1, "title": "已付款" },
+        { "status": 4, "title": "已完成" }
+      ],
+      "orderCard": {
+        "orderNo": "订单号",
+        "statusText": "状态文字",
+        "items": "商品列表（图片 + 名称 + 价格）",
+        "totalAmount": "总计金额",
+        "actionButtons": "操作按钮（去支付/取消/查看详情）"
+      },
+      "pageLogic": {
+        "onLoad": ["加载全部订单"],
+        "onTabChange": ["切换状态筛选"],
+        "onReachBottom": ["加载更多"]
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（订单列表加载、状态筛选、分页）",
+          "verify": "订单列表正确，筛选有效"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（Tab 切换 + 订单卡片列表）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    },
+    {
+      "id": "5.3",
+      "name": "订单详情页",
+      "description": "实现订单详情页：订单状态 + 商品信息 + 配送信息 + 价格明细 + 操作按钮",
+      "files": [
+        {
+          "path": "pages/my/orderDetail/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/my/orderDetail/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/orderDetail/index.wxss",
+          "action": "create"
+        }
+      ],
+      "sections": {
+        "statusBanner": "订单状态大标题（如：待付款/制作中/已完成）",
+        "productList": "商品图片 + 名称 + SKU + 价格 + 数量",
+        "deliveryInfo": "收货地址或自提点信息",
+        "reservationInfo": "预约日期 + 时间段",
+        "priceDetail": "商品金额 + 配送费 + 优惠 + 实付金额",
+        "orderInfo": "订单号 + 下单时间"
+      },
+      "actionButtons": {
+        "待付款": ["去支付", "取消订单"],
+        "已付款": ["查看详情"],
+        "制作中": ["查看详情"],
+        "已完成": ["删除订单"],
+        "已取消": ["删除订单"]
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（订单详情加载、操作按钮处理）",
+          "verify": "订单详情正确显示"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（状态 + 商品 + 配送 + 价格 + 操作按钮）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    },
+    {
+      "id": "5.4",
+      "name": "地址管理页",
+      "description": "实现地址管理页：地址列表 + 新增/编辑/删除 + 设置默认",
+      "files": [
+        {
+          "path": "pages/my/address/index.js",
+          "action": "modify"
+        },
+        {
+          "path": "pages/my/address/index.wxml",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/address/index.wxss",
+          "action": "create"
+        }
+      ],
+      "pageLogic": {
+        "onLoad": ["加载地址列表"],
+        "onAddAddress": ["跳转新增地址页"],
+        "onEditAddress": ["跳转编辑地址页，传递地址信息"],
+        "onDeleteAddress": ["确认后删除"],
+        "onSetDefault": ["调用 setDefaultAddress"]
+      },
+      "addressCard": {
+        "name": "收货人姓名",
+        "phone": "手机号（脱敏）",
+        "address": "完整地址",
+        "isDefault": "默认标识",
+        "editButton": "编辑",
+        "deleteButton": "删除"
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "实现 index.js（地址列表加载、增删改操作）",
+          "verify": "地址操作正常"
+        },
+        {
+          "order": 2,
+          "action": "实现 index.wxml（地址列表 + 新增入口）",
+          "verify": "页面布局正确"
+        },
+        {
+          "order": 3,
+          "action": "实现 index.wxss（样式）",
+          "verify": "样式符合设计规范"
+        }
+      ]
+    }
+  ]
+}

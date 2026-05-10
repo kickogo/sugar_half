@@ -1,0 +1,191 @@
+{
+  "phase": 1,
+  "name": "后端基础服务搭建",
+  "priority": "P0",
+  "tasks": [
+    {
+      "id": "1.1",
+      "name": "云开发环境初始化",
+      "description": "检查项目配置，确认云开发控制台开通状态",
+      "files": [
+        {
+          "path": "project.config.json",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "检查项目配置，确认 appid 为 touristappid，云开发控制台已开通",
+          "verify": "微信开发者工具中可见云开发入口"
+        },
+        {
+          "order": 2,
+          "action": "记录云环境 ID（形如 cloudbase-xxx）",
+          "verify": "环境 ID 已记录"
+        },
+        {
+          "order": 3,
+          "action": "如有需要更新 project.config.json 云环境配置",
+          "verify": "配置正确"
+        }
+      ]
+    },
+    {
+      "id": "1.2",
+      "name": "数据库集合创建",
+      "description": "在云开发控制台创建 8 个集合及测试数据",
+      "files": [
+        {
+          "path": "docs/database-init.md",
+          "action": "create"
+        }
+      ],
+      "collections": [
+        {
+          "name": "users",
+          "indexes": [
+            { "field": "openid", "unique": true }
+          ]
+        },
+        {
+          "name": "categories",
+          "indexes": []
+        },
+        {
+          "name": "products",
+          "indexes": []
+        },
+        {
+          "name": "sku_stock",
+          "indexes": [
+            { "field": "sku_key", "unique": true }
+          ]
+        },
+        {
+          "name": "orders",
+          "indexes": [
+            { "field": "order_no", "unique": true }
+          ]
+        },
+        {
+          "name": "order_items",
+          "indexes": []
+        },
+        {
+          "name": "reservations",
+          "indexes": [
+            { "field": "date+time_slot", "unique": true }
+          ]
+        },
+        {
+          "name": "addresses",
+          "indexes": []
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "在云开发控制台创建 8 个集合",
+          "verify": "8 个集合全部创建成功"
+        },
+        {
+          "order": 2,
+          "action": "创建测试数据（分类 3 个、商品 3-5 个、SKU 若干、预约时段 7 天）",
+          "verify": "测试数据可查询"
+        },
+        {
+          "order": 3,
+          "action": "创建所需索引",
+          "verify": "索引创建成功"
+        }
+      ]
+    },
+    {
+      "id": "1.3",
+      "name": "云函数公共模块",
+      "description": "创建云函数公共工具：db.js, error.js, logger.js, auth.js, helpers.js",
+      "files": [
+        {
+          "path": "cloudfunctions/utils/db.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/utils/error.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/utils/logger.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/utils/auth.js",
+          "action": "create"
+        },
+        {
+          "path": "cloudfunctions/utils/helpers.js",
+          "action": "create"
+        }
+      ],
+      "modules": [
+        {
+          "name": "db.js",
+          "exports": ["getOne", "getList", "insert", "updateOne", "incOne", "transaction", "conditionalUpdate"]
+        },
+        {
+          "name": "error.js",
+          "exports": ["BusinessError", "AuthError", "SystemError", "formatError", "ErrorCodes"]
+        },
+        {
+          "name": "logger.js",
+          "exports": ["debug", "info", "warn", "error"]
+        },
+        {
+          "name": "auth.js",
+          "exports": ["generateToken", "verifyToken"]
+        },
+        {
+          "name": "helpers.js",
+          "exports": ["generateOrderNo"]
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 cloudfunctions/utils/ 目录结构",
+          "verify": "目录存在"
+        },
+        {
+          "order": 2,
+          "action": "创建 db.js（数据库基础封装）",
+          "verify": "所有函数可正常调用"
+        },
+        {
+          "order": 3,
+          "action": "创建 error.js（错误类定义）",
+          "verify": "错误类可正常抛出和捕获"
+        },
+        {
+          "order": 4,
+          "action": "创建 logger.js（日志封装）",
+          "verify": "日志正常输出"
+        },
+        {
+          "order": 5,
+          "action": "创建 auth.js（JWT 鉴权）",
+          "verify": "Token 生成和验证正常"
+        },
+        {
+          "order": 6,
+          "action": "创建 helpers.js（辅助函数）",
+          "verify": "订单号格式正确"
+        },
+        {
+          "order": 7,
+          "action": "上传 utils 云函数到云开发",
+          "verify": "云函数可被其他函数 require"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "phase": 2,
+  "name": "前端项目框架",
+  "priority": "P0",
+  "tasks": [
+    {
+      "id": "2.1",
+      "name": "项目配置",
+      "description": "配置 app.json 页面路由、renderer 设置，创建页面基础配置",
+      "files": [
+        {
+          "path": "app.json",
+          "action": "modify"
+        },
+        {
+          "path": "pages/index/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/category/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/product/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/order/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/reservation/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/payment/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/orderList/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/orderDetail/index.json",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/address/index.json",
+          "action": "create"
+        }
+      ],
+      "pages": [
+        "pages/index/index",
+        "pages/category/index",
+        "pages/product/index",
+        "pages/order/index",
+        "pages/reservation/index",
+        "pages/payment/index",
+        "pages/my/index",
+        "pages/my/orderList/index",
+        "pages/my/orderDetail/index",
+        "pages/my/address/index"
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "更新 app.json（pages 路由、window 配置、renderer 设置）",
+          "verify": "app.json 配置正确，可被微信开发者工具识别"
+        },
+        {
+          "order": 2,
+          "action": "创建所有页面目录和基础 index.json",
+          "verify": "10 个页面的 index.json 全部创建"
+        }
+      ]
+    },
+    {
+      "id": "2.2",
+      "name": "全局样式",
+      "description": "在 app.wxss 中定义颜色系统、字体规范、间距、通用样式类",
+      "files": [
+        {
+          "path": "app.wxss",
+          "action": "modify"
+        }
+      ],
+      "designTokens": {
+        "colors": {
+          "primary": "#F5DCC3",
+          "accent": "#E8A0A0",
+          "text": "#333333",
+          "textLight": "#666666",
+          "textMuted": "#999999",
+          "bg": "#FAF9F7",
+          "white": "#FFFFFF",
+          "border": "#E8E8E8",
+          "success": "#4CAF50",
+          "error": "#E57373"
+        },
+        "spacing": {
+          "xs": "8rpx",
+          "sm": "16rpx",
+          "md": "24rpx",
+          "lg": "32rpx",
+          "xl": "48rpx"
+        },
+        "borderRadius": {
+          "card": "16rpx",
+          "button": "12rpx",
+          "tag": "8rpx",
+          "capsule": "9999rpx"
+        }
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "定义 CSS Custom Properties（颜色、间距）",
+          "verify": "变量可在页面中使用"
+        },
+        {
+          "order": 2,
+          "action": "定义通用样式类（page-container, card, btn-primary）",
+          "verify": "样式类可被继承"
+        }
+      ]
+    },
+    {
+      "id": "2.3",
+      "name": "Services 层",
+      "description": "创建 services 目录，实现 api.js、auth.js、payment.js",
+      "files": [
+        {
+          "path": "services/api.js",
+          "action": "create"
+        },
+        {
+          "path": "services/auth.js",
+          "action": "create"
+        },
+        {
+          "path": "services/payment.js",
+          "action": "create"
+        }
+      ],
+      "apiModules": [
+        {
+          "name": "userApi",
+          "methods": ["login", "getProfile", "updateProfile", "getAddressList", "addAddress", "setDefaultAddress"]
+        },
+        {
+          "name": "productApi",
+          "methods": ["getCategories", "getList", "getDetail"]
+        },
+        {
+          "name": "skuApi",
+          "methods": ["getStock"]
+        },
+        {
+          "name": "orderApi",
+          "methods": ["create", "getList", "getDetail", "cancel"]
+        },
+        {
+          "name": "reservationApi",
+          "methods": ["getSlots", "reserve"]
+        },
+        {
+          "name": "paymentApi",
+          "methods": ["getPayParams"]
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建 services/ 目录",
+          "verify": "目录存在"
+        },
+        {
+          "order": 2,
+          "action": "创建 api.js（云函数调用封装）",
+          "verify": "所有 API 方法可正常调用"
+        },
+        {
+          "order": 3,
+          "action": "创建 auth.js（登录态管理）",
+          "verify": "Token 存储和校验正常"
+        },
+        {
+          "order": 4,
+          "action": "创建 payment.js（支付服务）",
+          "verify": "pay() 方法返回正确格式"
+        }
+      ]
+    },
+    {
+      "id": "2.4",
+      "name": "页面模板",
+      "description": "创建所有页面的基础框架（js/json/wxml/wxss 空壳）",
+      "files": [
+        {
+          "path": "pages/index/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/category/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/product/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/order/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/reservation/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/payment/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/orderList/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/orderDetail/index.js",
+          "action": "create"
+        },
+        {
+          "path": "pages/my/address/index.js",
+          "action": "create"
+        }
+      ],
+      "pageStructure": {
+        "js": "基础 Page 框架，data 包含 loading: false",
+        "json": "usingComponents 配置 navigation-bar",
+        "wxml": "空壳或占位内容",
+        "wxss": "空壳或基础样式"
+      },
+      "steps": [
+        {
+          "order": 1,
+          "action": "创建所有页面目录",
+          "verify": "10 个页面目录全部存在"
+        },
+        {
+          "order": 2,
+          "action": "创建所有页面的 index.js 框架",
+          "verify": "每个页面可正常打开"
+        },
+        {
+          "order": 3,
+          "action": "创建所有页面的 index.json 配置",
+          "verify": "navigation-bar 组件正确引用"
+        }
+      ]
+    }
+  ]
+}

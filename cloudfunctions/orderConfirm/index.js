@@ -7,8 +7,14 @@ exports.main = async (event, context) => {
   try {
     const { order_id, user_id } = event
 
-    if (!order_id) {
+    if (!order_id || !user_id) {
       return { success: false, error: '缺少必要参数' }
+    }
+
+    // 校验商家身份
+    const userRes = await db.collection('users').doc(user_id).get()
+    if (!userRes.data || !userRes.data.is_admin) {
+      return { success: false, error: '无权操作此订单' }
     }
 
     // 查询订单

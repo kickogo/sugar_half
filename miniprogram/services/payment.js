@@ -19,7 +19,7 @@ function requestPayment(orderId, userId) {
           wx.hideLoading()
 
           // 4. 调用支付回调
-          api.payCallback({ order_id: orderId })
+          api.payCallback({ order_id: orderId, user_id: userId })
             .then(result => {
               wx.showToast({ title: '支付成功', icon: 'success' })
               resolve(result)

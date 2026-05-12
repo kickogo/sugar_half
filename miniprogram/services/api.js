@@ -52,7 +52,7 @@ module.exports = {
   getOrderDetail: (orderId) => callFunction('orderGetDetail', { order_id: orderId }),
 
   // 商家
-  confirmOrder: (orderId) => callFunction('orderConfirm', { order_id: orderId }),
+  confirmOrder: (orderId, userId) => callFunction('orderConfirm', { order_id: orderId, user_id: userId }),
 
   adminGetOrders: (params = {}) => callFunction('adminGetOrders', params),
 

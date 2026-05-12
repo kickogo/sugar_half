@@ -49,9 +49,12 @@ Page({
   },
 
   async onConfirmOrder() {
+    const userInfo = auth.getUserInfo()
+    if (!userInfo) return
+
     try {
       wx.showLoading({ title: '确认中...' })
-      await api.confirmOrder(this.data.orderId)
+      await api.confirmOrder(this.data.orderId, userInfo.user_id)
       wx.hideLoading()
       wx.showToast({ title: '确认成功', icon: 'success' })
       setTimeout(() => {

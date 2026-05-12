@@ -68,12 +68,13 @@ Component({
 
       return skus.some(sku => {
         const skuSpecs = JSON.parse(sku.specs || '{}');
-        return Object.keys(testSelected).every(key => {
-          if (key === specName) {
-            return skuSpecs[key] === value;
-          }
-          return skuSpecs[key] === testSelected[key];
-        });
+        // Check if all currently selected specs match the SKU
+        const allMatch = Object.keys(currentSelected).every(key =>
+          skuSpecs[key] === currentSelected[key]
+        );
+        // Check if the new spec value matches the SKU
+        const newMatch = skuSpecs[specName] === value;
+        return allMatch && newMatch;
       });
     },
 

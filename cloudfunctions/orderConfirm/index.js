@@ -25,10 +25,10 @@ exports.main = async (event, context) => {
       return { success: false, error: '订单状态不允许确认' }
     }
 
-    // 更新订单状态为已完成
+    // 更新订单状态为制作中
     await db.collection('orders').doc(order_id).update({
       data: {
-        status: 2,  // 已完成
+        status: 2,  // 制作中
         updated_at: new Date()
       }
     })
@@ -36,7 +36,7 @@ exports.main = async (event, context) => {
     return {
       success: true,
       data: {
-        message: '订单确认成功',
+        message: '订单已确认，开始制作',
         order_id,
         status: 2
       }

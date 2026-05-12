@@ -7,7 +7,7 @@ exports.main = async (event, context) => {
   try {
     const { order_id, user_id } = event
 
-    if (!order_id || !user_id) {
+    if (!order_id) {
       return { success: false, error: '缺少必要参数' }
     }
 

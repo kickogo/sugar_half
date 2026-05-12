@@ -29,7 +29,7 @@ function getUserInfo() {
  */
 module.exports = {
   // 用户
-  login: () => callFunction('login'),
+  login: () => callFunction('login').then(res => res.data),
 
   adminLogin: (phone) => callFunction('adminLogin', { phone }),
 

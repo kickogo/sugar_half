@@ -48,12 +48,7 @@ exports.main = async (event, context) => {
 
     return {
       success: true,
-      data: {
-        list,
-        total: orderRes.data.length,
-        page: parseInt(page),
-        page_size: parseInt(page_size)
-      }
+      data: list
     }
 
   } catch (err) {

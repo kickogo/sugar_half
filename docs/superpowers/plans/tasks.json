@@ -2,7 +2,7 @@
   "project": "蛋糕工作室小程序 MVP",
   "created_at": "2026-05-10",
   "total_tasks": 42,
-  "completed": 19,
+  "completed": 30,
   "tasks": [
     {
       "id": "0.1",
@@ -172,7 +172,7 @@
       "module": "component",
       "name": "navigation-bar 组件检查",
       "description": "确认组件完整性和功能",
-      "status": "in_progress",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -181,7 +181,7 @@
       "module": "component",
       "name": "time-picker 组件",
       "description": "预约时间选择器",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -190,7 +190,7 @@
       "module": "component",
       "name": "spec-selector 组件",
       "description": "三级规格选择器",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -199,7 +199,7 @@
       "module": "page",
       "name": "首页 pages/index",
       "description": "Banner + 分类入口 + 商品列表",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -208,7 +208,7 @@
       "module": "page",
       "name": "分类页 pages/category",
       "description": "按分类查看商品",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -217,7 +217,7 @@
       "module": "page",
       "name": "商品详情 pages/product",
       "description": "多图 + 三级规格 + SKU",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -226,7 +226,7 @@
       "module": "page",
       "name": "订单确认 pages/order",
       "description": "商品汇总 + 取货时间",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -235,7 +235,7 @@
       "module": "page",
       "name": "支付页 pages/payment",
       "description": "1.5秒模拟支付 + 成功跳转",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -244,7 +244,7 @@
       "module": "page",
       "name": "我的订单 pages/my",
       "description": "用户订单列表",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -253,7 +253,7 @@
       "module": "service",
       "name": "services/api.js",
       "description": "API 统一封装",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -262,7 +262,7 @@
       "module": "service",
       "name": "services/auth.js",
       "description": "鉴权逻辑",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -271,7 +271,7 @@
       "module": "service",
       "name": "services/payment.js",
       "description": "模拟支付流程",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -280,7 +280,7 @@
       "module": "page",
       "name": "商家登录页",
       "description": "手机号登录",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -289,7 +289,7 @@
       "module": "page",
       "name": "商家订单列表",
       "description": "按状态筛选",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -298,7 +298,7 @@
       "module": "page",
       "name": "商家订单详情",
       "description": "查看订单商品、预约时间",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {
@@ -307,7 +307,7 @@
       "module": "page",
       "name": "商家订单确认",
       "description": "一键确认功能",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0"
     },
     {

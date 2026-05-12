@@ -12,6 +12,15 @@
       <text class="order-no">订单号: {{orderDetail.order_no}}</text>
     </view>
 
+    <!-- 用户信息 -->
+    <view class="section">
+      <view class="section-title">用户信息</view>
+      <view class="info-row">
+        <text class="info-label">用户ID</text>
+        <text class="info-value">{{orderDetail.user_id}}</text>
+      </view>
+    </view>
+
     <!-- 取货信息 -->
     <view class="section">
       <view class="section-title">取货信息</view>
@@ -57,17 +66,11 @@
 
     <!-- 操作按钮 -->
     <view class="action-bar">
-      <view wx:if="{{orderDetail.status === 0}}" class="action-btn primary" bindtap="onConfirmOrder">
-        去支付
+      <view wx:if="{{orderDetail.status === 1}}" class="action-btn primary" bindtap="onConfirmOrder">
+        确认订单
       </view>
-      <view wx:if="{{orderDetail.status === 1}}" class="action-btn secondary">
-        待商家确认
-      </view>
-      <view wx:if="{{orderDetail.status === 2}}" class="action-btn secondary">
-        制作中
-      </view>
-      <view wx:if="{{orderDetail.status === 3}}" class="action-btn secondary">
-        待取货
+      <view wx:else class="action-btn disabled">
+        {{statusMap[orderDetail.status].text}}
       </view>
     </view>
   </view>

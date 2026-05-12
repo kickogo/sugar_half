@@ -1,6 +1,6 @@
-// pages/order/index.js
-const api = require('../../services/api')
-const auth = require('../../services/auth')
+// pages/admin/order/index.js
+const api = require('../../../services/api')
+const auth = require('../../../services/auth')
 
 Page({
   data: {
@@ -10,7 +10,7 @@ Page({
     error: '',
     statusMap: {
       0: { text: '待付款', color: '#ff6b6b' },
-      1: { text: '待商家确认', color: '#faad14' },
+      1: { text: '待确认', color: '#faad14' },
       2: { text: '制作中', color: '#1890ff' },
       3: { text: '待取货', color: '#52c41a' },
       4: { text: '已完成', color: '#52c41a' },
@@ -19,8 +19,8 @@ Page({
   },
 
   onLoad(options) {
-    if (options.order_id) {
-      this.setData({ orderId: options.order_id })
+    if (options.id) {
+      this.setData({ orderId: options.id })
       this.loadOrderDetail()
     } else {
       this.setData({ error: '缺少订单ID', loading: false })
@@ -28,16 +28,12 @@ Page({
   },
 
   onShow() {
-    const userInfo = auth.getUserInfo()
-    if (!userInfo) {
-      wx.navigateTo({ url: '/pages/my/index?needLogin=1' })
+    if (!auth.isAdmin()) {
+      wx.navigateBack()
     }
   },
 
   async loadOrderDetail() {
-    const userInfo = auth.getUserInfo()
-    if (!userInfo) return
-
     try {
       wx.showLoading({ title: '加载中...' })
       const res = await api.getOrderDetail(this.data.orderId)
@@ -53,25 +49,17 @@ Page({
   },
 
   async onConfirmOrder() {
-    const userInfo = auth.getUserInfo()
-    if (!userInfo) return
-
     try {
-      wx.showLoading({ title: '提交中...' })
-      const res = await api.getPayParams({
-        order_id: this.data.orderId,
-        user_id: userInfo.user_id
-      })
+      wx.showLoading({ title: '确认中...' })
+      await api.confirmOrder(this.data.orderId)
       wx.hideLoading()
-
-      if (res) {
-        wx.navigateTo({
-          url: `/pages/payment/index?order_id=${this.data.orderId}&amount=${this.data.orderDetail.total_amount}`
-        })
-      }
+      wx.showToast({ title: '确认成功', icon: 'success' })
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 1000)
     } catch (e) {
       wx.hideLoading()
-      wx.showToast({ title: '提交失败', icon: 'none' })
+      wx.showToast({ title: '确认失败', icon: 'none' })
     }
   },
 

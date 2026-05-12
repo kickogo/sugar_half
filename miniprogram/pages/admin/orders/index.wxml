@@ -1,0 +1,62 @@
+<view class="orders-page">
+  <navigation-bar title="商家订单" />
+
+  <!-- 标签筛选 -->
+  <view class="tabs">
+    <view
+      class="tab {{activeTab === 'all' ? 'active' : ''}}"
+      data-tab="all"
+      bindtap="onTabChange"
+    >全部</view>
+    <view
+      class="tab {{activeTab === 'pending' ? 'active' : ''}}"
+      data-tab="pending"
+      bindtap="onTabChange"
+    >待处理</view>
+    <view
+      class="tab {{activeTab === 'completed' ? 'active' : ''}}"
+      data-tab="completed"
+      bindtap="onTabChange"
+    >进行中</view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="orders">
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+    <view wx:elif="{{filteredOrders.length === 0}}" class="empty">
+      <text>暂无订单</text>
+    </view>
+
+    <view
+      wx:for="{{filteredOrders}}"
+      wx:key="order_id"
+      class="order-item"
+    >
+      <view class="order-header">
+        <text class="order-no">{{item.order_no}}</text>
+        <text class="order-status" style="color: {{statusMap[item.status].color}}">
+          {{statusMap[item.status].text}}
+        </text>
+      </view>
+
+      <view bindtap="onOrderTap" data-orderid="{{item.order_id}}">
+        <view class="order-info">
+          <text class="order-user">用户: {{item.user_id}}</text>
+          <text class="order-amount">¥{{formatPrice(item.pay_amount || item.total_amount)}}</text>
+        </view>
+
+        <view class="order-detail">
+          <text class="order-time">{{item.reservation_date}} {{item.reservation_time}}</text>
+          <text class="order-date">{{formatDate(item.created_at)}}</text>
+        </view>
+      </view>
+
+      <view wx:if="{{item.status === 1}}" class="action-row">
+        <view class="action-btn" bindtap="onConfirmOrder" data-orderid="{{item.order_id}}">
+          确认订单
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

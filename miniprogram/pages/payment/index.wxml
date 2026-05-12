@@ -1,2 +1,50 @@
-<!--pages/payment/index.wxml-->
-<text>pages/payment/index.wxml</text>
+<view class="payment-page">
+  <navigation-bar title="支付订单" />
+
+  <view class="content">
+    <!-- 支付金额 -->
+    <view class="amount-card">
+      <text class="amount-label">支付金额</text>
+      <view class="amount-value">
+        <text class="currency">¥</text>
+        <text class="money">{{formatPrice(amount)}}</text>
+      </view>
+    </view>
+
+    <!-- 状态 -->
+    <view class="status-card">
+      <view wx:if="{{status === 'pending'}}" class="status-item">
+        <text class="status-icon">⏳</text>
+        <text class="status-text">准备中...</text>
+      </view>
+
+      <view wx:elif="{{status === 'paying'}}" class="status-item">
+        <view class="loading-icon"></view>
+        <text class="status-text">支付中...</text>
+      </view>
+
+      <view wx:elif="{{status === 'success'}}" class="status-item success">
+        <text class="status-icon">✓</text>
+        <text class="status-text">支付成功</text>
+      </view>
+
+      <view wx:elif="{{status === 'fail'}}" class="status-item fail">
+        <text class="status-icon">✗</text>
+        <text class="status-text">支付失败</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="actions">
+      <view wx:if="{{status === 'success'}}" class="action-group">
+        <view class="action-btn primary" bindtap="onGoOrder">查看订单</view>
+        <view class="action-btn secondary" bindtap="onGoHome">返回首页</view>
+      </view>
+
+      <view wx:if="{{status === 'fail'}}" class="action-group">
+        <view class="action-btn primary" bindtap="startPayment">重新支付</view>
+        <view class="action-btn secondary" bindtap="onGoHome">返回首页</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,2 +1,91 @@
-<!--pages/product/index.wxml-->
-<text>pages/product/index.wxml</text>
+<view class="product-page">
+  <navigation-bar title="商品详情" />
+
+  <view wx:if="{{loading}}" class="loading">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:else class="content">
+    <!-- 商品图片 -->
+    <swiper class="product-swiper" indicator-dots circular>
+      <swiper-item wx:for="{{product.images}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill" class="product-image" />
+      </swiper-item>
+    </swiper>
+
+    <!-- 商品信息 -->
+    <view class="product-info">
+      <view class="product-header">
+        <text class="product-name">{{product.name}}</text>
+        <view class="product-tags">
+          <text wx:for="{{product.tags}}" wx:key="index" class="tag">{{item}}</text>
+        </view>
+      </view>
+      <view class="product-price">
+        <text class="price-symbol">¥</text>
+        <text class="price-value">{{formatPrice(product.base_price)}}</text>
+        <text class="price-unit">起</text>
+      </view>
+      <text class="product-desc">{{product.description}}</text>
+    </view>
+
+    <!-- 规格选择 -->
+    <view class="section">
+      <view class="section-title">选择规格</view>
+      <view class="spec-row" bindtap="onSkuTap">
+        <text class="spec-label">已选规格</text>
+        <text class="spec-value">{{selectedSku ? selectedSku.sku_name : '请选择'}}</text>
+        <text class="spec-arrow">></text>
+      </view>
+    </view>
+
+    <!-- 取货时间 -->
+    <view class="section">
+      <view class="section-title">取货时间</view>
+      <view class="spec-row" bindtap="onTimeTap">
+        <text class="spec-label">预约时间</text>
+        <text class="spec-value">
+          {{reservationDate && reservationTime ? reservationDate + ' ' + reservationTime : '请选择'}}
+        </text>
+        <text class="spec-arrow">></text>
+      </view>
+    </view>
+
+    <!-- 数量 -->
+    <view class="section">
+      <view class="section-title">数量</view>
+      <view class="quantity-row">
+        <text class="quantity-btn minus" bindtap="onQuantityMinus">-</text>
+        <text class="quantity-value">{{quantity}}</text>
+        <text class="quantity-btn plus" bindtap="onQuantityPlus">+</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="action-bar">
+    <view class="price-info">
+      <text class="total-label">合计</text>
+      <text class="total-price">¥{{selectedSku ? formatPrice(selectedSku.price * quantity) : '--'}}</text>
+    </view>
+    <view class="action-btn primary" bindtap="onAddToCart">提交订单</view>
+  </view>
+
+  <!-- 规格选择器 -->
+  <spec-selector
+    wx:if="{{specifications.length > 0}}"
+    visible="{{showSpecSelector}}"
+    specs="{{specifications}}"
+    skus="{{skus}}"
+    selectedSpecs="{{selectedSpecs}}"
+    bind:change="onSpecChange"
+    bind:close="onSpecClose"
+  />
+
+  <!-- 时间选择器 -->
+  <time-picker
+    visible="{{showTimePicker}}"
+    bind:confirm="onTimeChange"
+    bind:close="onTimeClose"
+  />
+</view>

@@ -1,66 +1,57 @@
 // pages/payment/index.js
+const api = require('../../services/api')
+const payment = require('../../services/payment')
+const auth = require('../../services/auth')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    orderId: '',
+    amount: 0,
+    status: 'pending' // pending, paying, success, fail
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    if (!options.order_id || !options.amount) {
+      wx.showToast({ title: '参数错误', icon: 'none' })
+      wx.navigateBack()
+      return
+    }
+    this.setData({
+      orderId: options.order_id,
+      amount: options.amount
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    const userInfo = auth.getUserInfo()
+    if (!userInfo) {
+      wx.navigateTo({ url: '/pages/my/index?needLogin=1' })
+      return
+    }
+    this.userId = userInfo.user_id
+    this.startPayment()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  async startPayment() {
+    this.setData({ status: 'paying' })
 
+    try {
+      await payment.requestPayment(this.data.orderId, this.userId)
+      this.setData({ status: 'success' })
+    } catch (e) {
+      this.setData({ status: 'fail' })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  onGoHome() {
+    wx.switchTab({ url: '/pages/index/index' })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  onGoOrder() {
+    wx.navigateTo({ url: '/pages/my/index' })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  formatPrice(cent) {
+    return (cent / 100).toFixed(2)
   }
 })

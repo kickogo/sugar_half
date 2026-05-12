@@ -1,1 +1,52 @@
 /* pages/admin/index.wxss */
+.admin-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.content {
+  padding: 120rpx 60rpx;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 60rpx 40rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.phone-input {
+  height: 88rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+}
+
+.error {
+  font-size: 24rpx;
+  color: #ff4d4f;
+  margin-bottom: 20rpx;
+}
+
+.login-btn {
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #ff6b6b;
+  color: #fff;
+  border-radius: 44rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.login-btn.loading {
+  background: #ccc;
+}

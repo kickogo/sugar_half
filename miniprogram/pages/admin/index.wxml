@@ -1,2 +1,24 @@
-<!--pages/admin/index.wxml-->
-<text>pages/admin/index.wxml</text>
+<view class="admin-page">
+  <navigation-bar title="商家登录" />
+
+  <view class="content">
+    <view class="login-card">
+      <view class="title">商家登录</view>
+
+      <input
+        type="number"
+        class="phone-input"
+        placeholder="请输入手机号"
+        maxlength="11"
+        bindinput="onPhoneInput"
+      />
+
+      <view wx:if="{{error}}" class="error">{{error}}</view>
+
+      <view class="login-btn {{loading ? 'loading' : ''}}" bindtap="onLogin">
+        <text wx:if="{{!loading}}">登录</text>
+        <text wx:else>登录中...</text>
+      </view>
+    </view>
+  </view>
+</view>

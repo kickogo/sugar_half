@@ -1,66 +1,46 @@
 // pages/admin/index.js
+const api = require('../../services/api')
+const auth = require('../../services/auth')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    phone: '',
+    loading: false,
+    error: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    const userInfo = auth.getUserInfo()
+    if (userInfo && userInfo.is_admin) {
+      wx.navigateTo({ url: '/pages/admin/orders' })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  onPhoneInput(e) {
+    this.setData({ phone: e.detail.value })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
+  async onLogin() {
+    const { phone } = this.data
 
-  },
+    if (!phone || phone.length !== 11) {
+      this.setData({ error: '请输入正确的手机号' })
+      return
+    }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    try {
+      this.setData({ loading: true, error: '' })
+      const res = await api.adminLogin(phone)
+      if (res) {
+        auth.saveUserInfo(res)
+        wx.showToast({ title: '登录成功', icon: 'success' })
+        setTimeout(() => {
+          wx.navigateTo({ url: '/pages/admin/orders' })
+        }, 1000)
+      }
+      this.setData({ loading: false })
+    } catch (e) {
+      this.setData({ loading: false, error: e.message || '登录失败' })
+    }
   }
 })

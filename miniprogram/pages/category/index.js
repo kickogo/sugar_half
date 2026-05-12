@@ -1,66 +1,67 @@
 // pages/category/index.js
+const api = require('../../services/api')
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    categories: [],
+    products: [],
+    selectedCategoryId: '',
+    loading: true
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    if (options.id) {
+      this.setData({ selectedCategoryId: options.id })
+    }
+    this.loadCategories()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  async loadCategories() {
+    try {
+      const res = await api.getCategories()
+      if (res && res.length > 0) {
+        this.setData({ categories: res })
+        if (!this.data.selectedCategoryId) {
+          this.setData({ selectedCategoryId: res[0]._id })
+        }
+        this.loadProducts()
+      }
+    } catch (e) {
+      console.error('loadCategories error:', e)
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
+  async loadProducts() {
+    try {
+      wx.showLoading({ title: '加载中...' })
+      const res = await api.getProductList({
+        category_id: this.data.selectedCategoryId
+      })
+      if (res) {
+        this.setData({ products: res, loading: false })
+      }
+      wx.hideLoading()
+    } catch (e) {
+      wx.hideLoading()
+      console.error('loadProducts error:', e)
+      this.setData({ loading: false })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  onCategoryTap(e) {
+    const { id } = e.currentTarget.dataset
+    if (id !== this.data.selectedCategoryId) {
+      this.setData({ selectedCategoryId: id, products: [], loading: true })
+      this.loadProducts()
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  onProductTap(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/product/index?id=${id}` })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  formatPrice(cent) {
+    return (cent / 100).toFixed(2)
   }
 })

@@ -1,2 +1,75 @@
-<!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view class="my-page">
+  <navigation-bar title="我的" />
+
+  <!-- 未登录 -->
+  <view wx:if="{{needLogin}}" class="login-card">
+    <text class="login-tip">登录后查看订单</text>
+    <view class="login-btn" bindtap="handleLogin">微信登录</view>
+  </view>
+
+  <!-- 已登录 -->
+  <view wx:else class="content">
+    <!-- 用户信息 -->
+    <view class="user-card">
+      <view class="user-info">
+        <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+        <view class="user-detail">
+          <text class="nickname">{{userInfo.nickname}}</text>
+          <text class="user-id">ID: {{userInfo.user_id}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 标签筛选 -->
+    <view class="tabs">
+      <view
+        class="tab {{activeTab === 'all' ? 'active' : ''}}"
+        data-tab="all"
+        bindtap="onTabChange"
+      >全部</view>
+      <view
+        class="tab {{activeTab === 'pending' ? 'active' : ''}}"
+        data-tab="pending"
+        bindtap="onTabChange"
+      >进行中</view>
+      <view
+        class="tab {{activeTab === 'completed' ? 'active' : ''}}"
+        data-tab="completed"
+        bindtap="onTabChange"
+      >已完成</view>
+    </view>
+
+    <!-- 订单列表 -->
+    <view class="orders">
+      <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+      <view wx:elif="{{getFilteredOrders().length === 0}}" class="empty">
+        <text>暂无订单</text>
+      </view>
+
+      <view
+        wx:for="{{getFilteredOrders()}}"
+        wx:key="order_id"
+        class="order-item"
+        bindtap="onOrderTap"
+        data-orderid="{{item.order_id}}"
+      >
+        <view class="order-header">
+          <text class="order-no">{{item.order_no}}</text>
+          <text class="order-status" style="color: {{statusMap[item.status].color}}">
+            {{statusMap[item.status].text}}
+          </text>
+        </view>
+
+        <view class="order-info">
+          <text class="order-date">{{formatDate(item.created_at)}}</text>
+          <text class="order-amount">¥{{formatPrice(item.total_amount)}}</text>
+        </view>
+
+        <view class="order-detail">
+          <text class="order-time">{{item.reservation_date}} {{item.reservation_time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,2 +1,49 @@
-<!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<view class="category-page">
+  <navigation-bar title="商品分类" />
+
+  <view class="content">
+    <!-- 分类栏 -->
+    <scroll-view class="category-tabs" scroll-x enable-flex>
+      <view
+        wx:for="{{categories}}"
+        wx:key="_id"
+        class="category-tab {{selectedCategoryId === item._id ? 'active' : ''}}"
+        bindtap="onCategoryTap"
+        data-id="{{item._id}}"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <!-- 商品列表 -->
+    <view class="products">
+      <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+      <view wx:elif="{{products.length === 0}}" class="empty">
+        <text>该分类暂无商品</text>
+      </view>
+
+      <view
+        wx:for="{{products}}"
+        wx:key="_id"
+        class="product-item"
+        bindtap="onProductTap"
+        data-id="{{item._id}}"
+      >
+        <image
+          src="{{item.coverImage || '/images/default-goods-image.png'}}"
+          mode="aspectFill"
+          class="product-image"
+        />
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <text class="product-desc">{{item.description}}</text>
+          <view class="product-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{formatPrice(item.basePrice)}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

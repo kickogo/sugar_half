@@ -1,6 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/category/index",
+    "pages/product/index",
+    "pages/order/index",
+    "pages/payment/index",
+    "pages/my/index",
+    "pages/admin/index",
     "pages/example/index"
   ],
   "window": {

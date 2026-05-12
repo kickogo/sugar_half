@@ -1,0 +1,18 @@
+<view class="nav-bar {{extClass}}" style="background: {{background}}; color: {{color}};">
+  <view class="nav-bar__placeholder" style="height: {{statusBarHeight}}px;"></view>
+  <view class="nav-bar__content">
+    <view class="nav-bar__left" catchtap="onBack" data-position="back">
+      <view class="nav-bar__btn" wx:if="{{back}}">
+        <text class="nav-bar__back-icon">‹</text>
+      </view>
+      <view class="nav-bar__btn" wx:if="{{homeButton}}" catchtap="onHome">
+        <text class="nav-bar__home-icon">⌂</text>
+      </view>
+    </view>
+    <view class="nav-bar__title">
+      <text wx:if="{{loading}}" class="nav-bar__loading">...</text>
+      <text wx:else>{{title}}</text>
+    </view>
+    <view class="nav-bar__right"></view>
+  </view>
+</view>

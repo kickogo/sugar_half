@@ -1,0 +1,359 @@
+{
+  "project": "蛋糕工作室小程序 MVP",
+  "created_at": "2026-05-10",
+  "total_tasks": 42,
+  "completed": 19,
+  "tasks": [
+    {
+      "id": "0.1",
+      "phase": 0,
+      "module": "config",
+      "name": "更新 app.js 环境 ID",
+      "description": "填写 cloud1-d7gxxh0mz559ebcb3",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "0.2",
+      "phase": 0,
+      "module": "config",
+      "name": "更新 app.json 页面配置",
+      "description": "添加 MVP 需要的页面路径",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.1.1",
+      "phase": 1,
+      "module": "user",
+      "name": "user.login 云函数",
+      "description": "微信登录，返回 openid + token + is_admin",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.1.2",
+      "phase": 1,
+      "module": "user",
+      "name": "user.adminLogin 云函数",
+      "description": "商家手机号登录，验证码跳过",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.2.1",
+      "phase": 1,
+      "module": "product",
+      "name": "product.getCategories 云函数",
+      "description": "获取分类列表",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.2.2",
+      "phase": 1,
+      "module": "product",
+      "name": "product.getList 云函数",
+      "description": "获取商品列表，支持分类筛选",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.2.3",
+      "phase": 1,
+      "module": "product",
+      "name": "product.getDetail 云函数",
+      "description": "获取商品详情，含 SKU 列表",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.3.1",
+      "phase": 1,
+      "module": "data",
+      "name": "初始化分类数据",
+      "description": "生日蛋糕、下午茶 2 个分类",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.3.2",
+      "phase": 1,
+      "module": "data",
+      "name": "初始化商品数据",
+      "description": "草莓慕斯、巧克力浓郁 2 个商品",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.3.3",
+      "phase": 1,
+      "module": "data",
+      "name": "初始化夹馅数据",
+      "description": "7 种夹馅",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "1.3.4",
+      "phase": 1,
+      "module": "data",
+      "name": "初始化 SKU 数据",
+      "description": "草莓慕斯的完整 SKU 组合",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.1.1",
+      "phase": 2,
+      "module": "order",
+      "name": "order.create 云函数",
+      "description": "创建订单，校验 SKU，生成订单号",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.1.2",
+      "phase": 2,
+      "module": "order",
+      "name": "order.pay 云函数",
+      "description": "返回模拟支付参数",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.1.3",
+      "phase": 2,
+      "module": "order",
+      "name": "order.payCallback 云函数",
+      "description": "模拟回调，直接返回成功",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.1.4",
+      "phase": 2,
+      "module": "order",
+      "name": "order.getList 云函数",
+      "description": "获取订单列表",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.1.5",
+      "phase": 2,
+      "module": "order",
+      "name": "order.getDetail 云函数",
+      "description": "获取订单详情",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.1.6",
+      "phase": 2,
+      "module": "order",
+      "name": "order.confirm 云函数",
+      "description": "商家确认订单",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "2.2.1",
+      "phase": 2,
+      "module": "admin",
+      "name": "admin.getOrders 云函数",
+      "description": "商家获取订单，按状态筛选",
+      "status": "completed",
+      "priority": "P0"
+    },
+    {
+      "id": "3.1.1",
+      "phase": 3,
+      "module": "component",
+      "name": "navigation-bar 组件检查",
+      "description": "确认组件完整性和功能",
+      "status": "in_progress",
+      "priority": "P0"
+    },
+    {
+      "id": "3.1.2",
+      "phase": 3,
+      "module": "component",
+      "name": "time-picker 组件",
+      "description": "预约时间选择器",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.1.3",
+      "phase": 3,
+      "module": "component",
+      "name": "spec-selector 组件",
+      "description": "三级规格选择器",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.2.1",
+      "phase": 3,
+      "module": "page",
+      "name": "首页 pages/index",
+      "description": "Banner + 分类入口 + 商品列表",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.2.2",
+      "phase": 3,
+      "module": "page",
+      "name": "分类页 pages/category",
+      "description": "按分类查看商品",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.2.3",
+      "phase": 3,
+      "module": "page",
+      "name": "商品详情 pages/product",
+      "description": "多图 + 三级规格 + SKU",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.2.4",
+      "phase": 3,
+      "module": "page",
+      "name": "订单确认 pages/order",
+      "description": "商品汇总 + 取货时间",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.2.5",
+      "phase": 3,
+      "module": "page",
+      "name": "支付页 pages/payment",
+      "description": "1.5秒模拟支付 + 成功跳转",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.2.6",
+      "phase": 3,
+      "module": "page",
+      "name": "我的订单 pages/my",
+      "description": "用户订单列表",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.3.1",
+      "phase": 3,
+      "module": "service",
+      "name": "services/api.js",
+      "description": "API 统一封装",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.3.2",
+      "phase": 3,
+      "module": "service",
+      "name": "services/auth.js",
+      "description": "鉴权逻辑",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "3.3.3",
+      "phase": 3,
+      "module": "service",
+      "name": "services/payment.js",
+      "description": "模拟支付流程",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "4.1",
+      "phase": 4,
+      "module": "page",
+      "name": "商家登录页",
+      "description": "手机号登录",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "4.2",
+      "phase": 4,
+      "module": "page",
+      "name": "商家订单列表",
+      "description": "按状态筛选",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "4.3",
+      "phase": 4,
+      "module": "page",
+      "name": "商家订单详情",
+      "description": "查看订单商品、预约时间",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "4.4",
+      "phase": 4,
+      "module": "page",
+      "name": "商家订单确认",
+      "description": "一键确认功能",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "5.1",
+      "phase": 5,
+      "module": "test",
+      "name": "模拟数据验证",
+      "description": "确保商品、SKU 能正常查询",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "5.2",
+      "phase": 5,
+      "module": "test",
+      "name": "下单流程测试",
+      "description": "全流程走通",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "5.3",
+      "phase": 5,
+      "module": "test",
+      "name": "商家功能测试",
+      "description": "登录、订单管理",
+      "status": "pending",
+      "priority": "P0"
+    },
+    {
+      "id": "5.4",
+      "phase": 5,
+      "module": "test",
+      "name": "问题修复",
+      "description": "记录并修复发现的问题",
+      "status": "pending",
+      "priority": "P1"
+    },
+    {
+      "id": "5.5",
+      "phase": 5,
+      "module": "doc",
+      "name": "文档更新",
+      "description": "确保 mvp-implementation.md 与实际一致",
+      "status": "pending",
+      "priority": "P1"
+    }
+  ]
+}

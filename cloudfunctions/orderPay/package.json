@@ -1,0 +1,9 @@
+{
+  "name": "order-pay",
+  "version": "1.0.0",
+  "description": "获取支付参数（模拟）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+}

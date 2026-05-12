@@ -1,0 +1,31 @@
+<view class="selector-overlay" wx:if="{{visible}}" catchtap="onClose">
+  <view class="selector-container" catchtap="stopPropagation">
+    <view class="selector-header">
+      <text class="selector-title">选择规格</text>
+      <view class="selector-close" catchtap="onClose">×</view>
+    </view>
+
+    <view class="selector-content">
+      <view wx:for="{{processedSpecs}}" wx:key="name" class="spec-group">
+        <text class="spec-name">{{item.name}}</text>
+        <view class="spec-options">
+          <view
+            wx:for="{{item.options}}"
+            wx:for-item="option"
+            wx:key="value"
+            class="spec-option {{option.selected ? 'selected' : ''}} {{!option.available ? 'unavailable' : ''}}"
+            catchtap="onSpecTap"
+            data-specname="{{item.name}}"
+            data-value="{{option.value}}"
+          >
+            <text>{{option.label}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="selector-footer">
+      <button class="confirm-btn" catchtap="onConfirm">确定</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<view class="picker-overlay" wx:if="{{visible}}" catchtap="onClose">
+  <view class="picker-container" catchtap="stopPropagation">
+    <view class="picker-header">
+      <text class="picker-title">选择取货时间</text>
+      <view class="picker-close" catchtap="onClose">×</view>
+    </view>
+
+    <view class="calendar">
+      <view class="calendar-header">
+        <view class="calendar-nav" catchtap="onPrevMonth">‹</view>
+        <text class="calendar-title">{{viewYear}}年{{viewMonth}}月</text>
+        <view class="calendar-nav" catchtap="onNextMonth">›</view>
+      </view>
+      <view class="calendar-weekdays">
+        <text>日</text>
+        <text>一</text>
+        <text>二</text>
+        <text>三</text>
+        <text>四</text>
+        <text>五</text>
+        <text>六</text>
+      </view>
+      <view class="calendar-days">
+        <view wx:for="{{days}}" wx:key="index" class="calendar-day {{item.disabled ? 'disabled' : ''}} {{item.selected ? 'selected' : ''}} {{item.today ? 'today' : ''}}" catchtap="onDateSelect" data-date="{{item}}">
+          <text>{{item.day}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="time-slots">
+      <text class="time-slots-title">选择时间段</text>
+      <view class="time-slots-grid">
+        <view wx:for="{{timeSlots}}" wx:key="time" class="time-slot {{item.time === selectedTime ? 'selected' : ''}} {{!item.available ? 'unavailable' : ''}}" catchtap="onTimeSelect" data-time="{{item.time}}">
+          <text>{{item.label}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="picker-footer">
+      <button class="confirm-btn" catchtap="onConfirm">确定</button>
+    </view>
+  </view>
+</view>

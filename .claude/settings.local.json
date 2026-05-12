@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(cp cloudfunctions/user/adminLogin/* cloudfunctions/adminLogin/)",
+      "Bash(cp cloudfunctions/user/adminLogin/* cloudfunctions/adminGetOrders/)",
+      "Bash(cp cloudfunctions/order/create/* cloudfunctions/orderCreate/)",
+      "Bash(cp cloudfunctions/order/getDetail/* cloudfunctions/orderGetDetail/)",
+      "Bash(cp cloudfunctions/order/getList/* cloudfunctions/orderGetList/)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

@@ -72,7 +72,7 @@ Page({
     try {
       const res = await api.getOrderList({ user_id: userInfo.user_id })
       this.setData({
-        orders: res.data || [],
+        orders: res || [],
         loading: false
       })
     } catch (e) {

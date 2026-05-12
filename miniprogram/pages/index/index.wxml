@@ -22,7 +22,7 @@
           wx:key="id"
           class="category-item"
           bindtap="onCategoryTap"
-          data-id="{{item._id}}"
+          data-id="{{item.id}}"
         >
           <image src="{{item.icon || '/images/default-goods-image.png'}}" mode="aspectFill" class="category-icon" />
           <text class="category-name">{{item.name}}</text>
@@ -41,15 +41,14 @@
           wx:key="id"
           class="product-item"
           bindtap="onProductTap"
-          data-id="{{item._id}}"
+          data-id="{{item.id}}"
         >
-          <image src="{{item.coverImage || '/images/default-goods-image.png'}}" mode="aspectFill" class="product-image" />
+          <image src="{{item.image || '/images/default-goods-image.png'}}" mode="aspectFill" class="product-image" />
           <view class="product-info">
             <text class="product-name">{{item.name}}</text>
-            <text class="product-desc">{{item.description}}</text>
             <view class="product-price">
               <text class="price-symbol">¥</text>
-              <text class="price-value">{{item.basePrice}}</text>
+              <text class="price-value">{{formatPrice(item.price)}}</text>
             </view>
           </view>
         </view>

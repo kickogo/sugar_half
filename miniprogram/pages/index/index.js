@@ -1,5 +1,6 @@
 // index.js
 const app = getApp()
+const api = require('../../services/api')
 
 Page({
   data: {
@@ -30,11 +31,9 @@ Page({
 
   async loadCategories() {
     try {
-      const res = await wx.cloud.callFunction({
-        name: 'productGetCategories'
-      })
-      if (res.result && res.result.success) {
-        this.setData({ categories: res.result.data })
+      const res = await api.getCategories()
+      if (res) {
+        this.setData({ categories: res })
       }
     } catch (e) {
       console.error('loadCategories error:', e)
@@ -44,12 +43,9 @@ Page({
   async loadProducts() {
     try {
       wx.showLoading({ title: '加载中...' })
-      const res = await wx.cloud.callFunction({
-        name: 'productGetList',
-        data: {}
-      })
-      if (res.result && res.result.success) {
-        this.setData({ products: res.result.data, loading: false })
+      const res = await api.getProductList({})
+      if (res) {
+        this.setData({ products: res, loading: false })
       }
       wx.hideLoading()
     } catch (e) {
@@ -78,5 +74,9 @@ Page({
 
   onSearchTap() {
     wx.navigateTo({ url: '/pages/category/index' })
+  },
+
+  formatPrice(cent) {
+    return (cent / 100).toFixed(2)
   }
 })

@@ -78,6 +78,7 @@ exports.main = async (event, context) => {
         description: product.description || '',
         images: product.images || [],
         base_price: product.base_price,
+        tags: product.tags || [],
         fills,
         specifications,
         skus

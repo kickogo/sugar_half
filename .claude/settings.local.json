@@ -8,7 +8,9 @@
       "Bash(cp cloudfunctions/order/getDetail/* cloudfunctions/orderGetDetail/)",
       "Bash(cp cloudfunctions/order/getList/* cloudfunctions/orderGetList/)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "mcp__ide__getDiagnostics",
+      "mcp__plugin_chrome-devtools-mcp_chrome-devtools__list_pages"
     ]
   }
 }

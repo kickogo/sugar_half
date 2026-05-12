@@ -22,7 +22,7 @@ Page({
       if (res && res.length > 0) {
         this.setData({ categories: res })
         if (!this.data.selectedCategoryId) {
-          this.setData({ selectedCategoryId: res[0]._id })
+          this.setData({ selectedCategoryId: res[0].id })
         }
         this.loadProducts()
       }

@@ -1,10 +1,6 @@
 /**
  * API 统一封装
  */
-const cloud = require('wx-server-sdk')
-cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
-
-const db = cloud.database()
 
 /**
  * 调用云函数

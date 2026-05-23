@@ -1,0 +1,40 @@
+<!-- pages/my/my.wxml -->
+<view class="container">
+  <!-- 顶部大桥插画背景 -->
+  <view class="header-bg">
+    <image class="bridge-illustration" src="/image/banners/背景.png" mode="aspectFill"></image>
+    <view class="user-info">
+      <view class="avatar-placeholder">
+        <text class="avatar-text">静</text>
+      </view>
+      <text class="username">静宜的朋友</text>
+    </view>
+  </view>
+
+  <!-- VIP 会员卡 -->
+  <view class="vip-card">
+    <view class="vip-left">
+      <text class="vip-title">静宜朋友卡</text>
+      <text class="vip-subtitle">VIP Member</text>
+      <view class="vip-benefits">
+        <text class="benefit-item">✓ 生日专属蛋糕8折</text>
+        <text class="benefit-item">✓ 优先配送</text>
+        <text class="benefit-item">✓ 积分双倍</text>
+      </view>
+    </view>
+    <view class="vip-right">
+      <text class="vip-level">金卡</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="功能列表">
+    <view class="功能项" wx:for="{{menuItems}}" wx:key="id">
+      <view class="功能左">
+        <text class="功能图标">{{item.icon}}</text>
+        <text class="功能名称">{{item.name}}</text>
+      </view>
+      <text class="功能箭头">›</text>
+    </view>
+  </view>
+</view>

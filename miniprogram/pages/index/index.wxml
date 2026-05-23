@@ -1,29 +1,50 @@
-<!--index.wxml-->
+<!-- pages/index/index.wxml -->
 <view class="container">
-  <view class="title">快速了解云开发</view>
-  <view class="top_tip">免鉴权接口调用 免部署后台 高并发</view>
-  <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
-    <view class="power_info" data-index="{{index}}" data-type="{{ power.type }}" bindtap="onClickPowerInfo">
-      <view class="power_info_text">
-        <view class="power_info_text_title">
-          {{power.title}}
-          <view class="power_info_text_tag" wx:if="{{power.tag}}">{{power.tag}}</view>
+  <!-- 顶部轮播区 -->
+  <view class="swiper-section">
+    <!-- 棋盘格背景平铺 -->
+    <view class="checkerboard-bg"></view>
+
+    <!-- 轮播图 -->
+    <swiper class="main-swiper" circular="true" autoplay="true" interval="3000" duration="500">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <view class="cake-wrapper">
+          <view class="scalloped-border">
+            <image class="cake-img" src="{{item.image}}" mode="aspectFill"></image>
+          </view>
         </view>
-        <view class="power_info_text_tip">{{power.tip}}</view>
-      </view>
-      <image wx:if="{{!power.showItem && power.item.length}}" class="power_info_more" src="../../images/arrow.svg"></image>
-      <image wx:if="{{power.showItem && power.item.length}}" class="power_info_less" src="../../images/arrow.svg"></image>
-      <image wx:if="{{!power.item.length}}" class="power_item_icon" src="../../images/arrow.svg"></image>
-    </view>
-    <view wx:if="{{power.showItem}}">
-      <view wx:key="title" wx:for="{{power.item}}">
-        <view class="line"></view>
-        <view class="power_item" bindtap="jumpPage" data-type="{{ item.type }}" data-page="{{item.page}}">
-          <view class="power_item_title">{{item.title}}</view>
-          <image class="power_item_icon" src="../../images/arrow.svg"></image>
-        </view>
-      </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- Jenny 品牌椭圆标签 -->
+    <view class="jenny-brand">
+      <text>Jenny</text>
     </view>
   </view>
-  <cloud-tip-modal showTipProps="{{showTip}}" title="{{title}}" content="{{content}}"></cloud-tip-modal>
+
+  <!-- 客服小票 -->
+  <view class="service-ticket">
+    <view class="ticket-content">
+      <view class="ticket-header">ONLINE SERVICE</view>
+      <view class="ticket-body">客服小票</view>
+      <view class="ticket-footer">在线咨询</view>
+    </view>
+  </view>
+
+  <!-- 时令鲜果金刚位 -->
+  <view class="fruit-section">
+    <view class="fruit-left">
+      <text class="fruit-title">时令鲜果</text>
+      <text class="fruit-sub">Summer Fresh</text>
+    </view>
+    <view class="fruit-arrow">→</view>
+  </view>
+
+  <!-- 底部气泡框 -->
+  <view class="bubble-section">
+    <view class="bubble-card">
+      <text class="bubble-text">查看全部蛋糕</text>
+      <text class="bubble-arrow">›</text>
+    </view>
+  </view>
 </view>

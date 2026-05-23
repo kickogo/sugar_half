@@ -1,0 +1,168 @@
+/* pages/goods/goods.wxss */
+
+/* ---------- 搜索框 ---------- */
+.search-bar {
+  padding: 24rpx 40rpx;
+  background: var(--bg-main);
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border: 3rpx solid var(--active-red);
+  border-radius: var(--btn-radius);
+  padding: 16rpx 24rpx;
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--text-dark);
+}
+
+.search-placeholder {
+  color: var(--text-grey);
+  font-size: 28rpx;
+}
+
+/* ---------- 荔枝 Banner ---------- */
+.banner-wrap {
+  padding: 0 30rpx;
+}
+
+.lychee-banner {
+  width: 100%;
+  border-radius: var(--btn-radius);
+}
+
+/* ---------- 分割线标题 ---------- */
+.section-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40rpx 0 30rpx;
+  padding: 0 40rpx;
+}
+
+.title-line {
+  flex: 1;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, var(--active-red), transparent);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: var(--active-red);
+  padding: 0 24rpx;
+  white-space: nowrap;
+}
+
+/* ---------- 双列商品网格 ---------- */
+.goods-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 24rpx;
+  padding: 0 30rpx 40rpx;
+}
+
+.goods-card {
+  background: var(--white);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  border: var(--border-thick);
+  box-shadow: var(--retro-shadow);
+}
+
+.goods-img-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* 1:1 正方形 */
+  overflow: hidden;
+}
+
+.goods-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 印章贴纸 */
+.stamp-sticker {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: var(--primary-pink);
+  border: 3rpx solid var(--active-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(15deg);
+}
+
+.stamp-sticker text {
+  font-size: 18rpx;
+  font-weight: bold;
+  color: var(--white);
+}
+
+/* 购物车小图标 */
+.cart-icon-wrap {
+  position: absolute;
+  bottom: 12rpx;
+  right: 12rpx;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: var(--btn-radius);
+  background: var(--primary-pink);
+  border: 3rpx solid var(--active-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--retro-shadow);
+}
+
+.cart-icon {
+  font-size: 28rpx;
+}
+
+/* ---------- 商品信息 ---------- */
+.goods-info {
+  padding: 16rpx 20rpx 20rpx;
+}
+
+.goods-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 6rpx;
+  text-align: left;
+}
+
+.goods-desc {
+  display: block;
+  font-size: 22rpx;
+  color: var(--text-grey);
+  margin-bottom: 12rpx;
+  text-align: left;
+}
+
+.goods-price {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--active-red);
+  text-align: left;
+}

@@ -1,16 +1,56 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/example/index"
+    "pages/goods/goods",
+    "pages/scores/scores",
+    "pages/cart/cart",
+    "pages/my/my"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#FFF2F5",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarBackgroundColor": "#FFF2F5",
+    "navigationBarTitleText": "JENNY & FRIENDS",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "backgroundColor": "#FFFFFF",
+    "selectedColor": "#E27D9A",
+    "color": "#999999",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "image/icon/首页_idle.png",
+        "selectedIconPath": "image/icon/首页_active.png"
+      },
+      {
+        "pagePath": "pages/goods/goods",
+        "text": "全部商品",
+        "iconPath": "image/icon/全部商品_idle.png",
+        "selectedIconPath": "image/icon/全部商品_active.png"
+      },
+      {
+        "pagePath": "pages/scores/scores",
+        "text": "积分商城",
+        "iconPath": "image/icon/积分商城_idle.png",
+        "selectedIconPath": "image/icon/积分商城_active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "image/icon/购物车_idle.png",
+        "selectedIconPath": "image/icon/购物车_active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "image/icon/我的_idle.png",
+        "selectedIconPath": "image/icon/我的_active.png"
+      }
+    ]
+  }
 }

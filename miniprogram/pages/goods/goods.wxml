@@ -1,0 +1,44 @@
+<!-- pages/goods/goods.wxml -->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索蛋糕..." placeholder-class="search-placeholder" />
+    </view>
+  </view>
+
+  <!-- 荔枝季 Banner -->
+  <view class="banner-wrap">
+    <image class="lychee-banner" src="/image/banners/背景.png" mode="widthFix"></image>
+  </view>
+
+  <!-- 分割线标题 -->
+  <view class="section-title-wrap">
+    <view class="title-line"></view>
+    <text class="section-title">以爱为名·即刻入夏</text>
+    <view class="title-line"></view>
+  </view>
+
+  <!-- 双列商品网格 -->
+  <view class="goods-grid">
+    <view class="goods-card" wx:for="{{goodsList}}" wx:key="id">
+      <view class="goods-img-wrap">
+        <image class="goods-img" src="{{item.image}}" mode="aspectFill"></image>
+        <!-- 印章贴纸 -->
+        <view class="stamp-sticker">
+          <text>{{item.stampText}}</text>
+        </view>
+        <!-- 购物车小图标 -->
+        <view class="cart-icon-wrap">
+          <text class="cart-icon">🛒</text>
+        </view>
+      </view>
+      <view class="goods-info">
+        <text class="goods-name">{{item.name}}</text>
+        <text class="goods-desc">{{item.desc}}</text>
+        <text class="goods-price">¥{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+</view>

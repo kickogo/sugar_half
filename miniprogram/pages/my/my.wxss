@@ -1,0 +1,152 @@
+/* pages/my/my.wxss */
+
+/* ---------- 头部背景 ---------- */
+.header-bg {
+  position: relative;
+  height: 400rpx;
+  overflow: hidden;
+}
+
+.bridge-illustration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.user-info {
+  position: absolute;
+  bottom: 40rpx;
+  left: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.avatar-placeholder {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: var(--primary-pink);
+  border: 4rpx solid var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.avatar-text {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.username {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--white);
+  text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.3);
+}
+
+/* ---------- VIP 会员卡 ---------- */
+.vip-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -80rpx 40rpx 0;
+  padding: 32rpx;
+  background: linear-gradient(135deg, var(--vip-gold) 0%, #F5E6D3 100%);
+  border: var(--border-thick);
+  border-radius: var(--card-radius);
+  box-shadow: var(--retro-shadow);
+  position: relative;
+  z-index: 10;
+}
+
+.vip-left {
+  flex: 1;
+}
+
+.vip-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--active-red);
+  margin-bottom: 6rpx;
+}
+
+.vip-subtitle {
+  display: block;
+  font-size: 22rpx;
+  color: var(--text-grey);
+  margin-bottom: 16rpx;
+}
+
+.vip-benefits {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit-item {
+  font-size: 22rpx;
+  color: var(--text-dark);
+  margin-bottom: 4rpx;
+}
+
+.vip-right {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: var(--active-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vip-level {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--white);
+}
+
+/* ---------- 功能列表 ---------- */
+.功能列表 {
+  margin: 30rpx 40rpx 40rpx;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: var(--card-radius);
+  box-shadow: var(--retro-shadow);
+  overflow: hidden;
+}
+
+.功能项 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 24rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.功能项:last-child {
+  border-bottom: none;
+}
+
+.功能左 {
+  display: flex;
+  align-items: center;
+}
+
+.功能图标 {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.功能名称 {
+  font-size: 28rpx;
+  color: var(--text-dark);
+}
+
+.功能箭头 {
+  font-size: 36rpx;
+  color: var(--text-grey);
+}

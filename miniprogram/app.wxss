@@ -1,27 +1,63 @@
 /**app.wxss**/
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-} 
 
+/* ==================== UI Design System: JENNY & FRIENDS ==================== */
+
+/* ---------- Color Palette ---------- */
+page {
+  --bg-main: #FFF2F5;
+  --primary-pink: #E27D9A;
+  --active-red: #7A2238;
+  --text-dark: #333333;
+  --text-grey: #666666;
+  --white: #FFFFFF;
+  --vip-gold: #EAD1B3;
+
+  /* ---------- Border, Radius & Shadow ---------- */
+  --card-radius: 24rpx;
+  --btn-radius: 16rpx;
+  --border-thick: 4rpx solid #7A2238;
+  --retro-shadow: 6rpx 6rpx 0rpx #7A2238;
+
+  /* ---------- Typography ---------- */
+  --font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* ---------- Global Resets ---------- */
+  background-color: var(--bg-main);
+  font-family: var(--font-family);
+  color: var(--text-dark);
+  box-sizing: border-box;
+}
+
+/* ---------- Container ---------- */
+.container {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+}
+
+/* ---------- Button Reset ---------- */
 button {
   background: initial;
-}
-
-button:focus{
-  outline: 0;
-}
-
-button::after{
+  padding: 0;
+  margin: 0;
   border: none;
 }
 
+button::after {
+  border: none;
+}
 
-page {
-  background: #f6f6f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+/* ---------- Image ---------- */
+image {
+  display: block;
+}
+
+/* ---------- Global Active States ---------- */
+view:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+/* ---------- Safe Area Padding Helper ---------- */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }

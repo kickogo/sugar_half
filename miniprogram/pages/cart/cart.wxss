@@ -1,0 +1,276 @@
+/* pages/cart/cart.wxss */
+
+/* ---------- 配送通知 ---------- */
+.delivery-notice {
+  background: rgba(226, 125, 154, 0.15);
+  padding: 16rpx 40rpx;
+}
+
+.notice-text {
+  font-size: 24rpx;
+  color: var(--active-red);
+  font-weight: bold;
+}
+
+/* ---------- 门店卡片 ---------- */
+.store-card {
+  margin: 20rpx 40rpx;
+  padding: 24rpx;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: var(--card-radius);
+  box-shadow: var(--retro-shadow);
+}
+
+.store-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-name {
+  font-size: 28rpx;
+  color: var(--text-dark);
+  font-weight: bold;
+}
+
+.store-edit {
+  font-size: 24rpx;
+  color: var(--primary-pink);
+  border: 2rpx solid var(--primary-pink);
+  border-radius: 8rpx;
+  padding: 6rpx 16rpx;
+}
+
+/* ---------- 购物车列表 ---------- */
+.cart-list {
+  padding: 20rpx 40rpx;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: var(--card-radius);
+  box-shadow: var(--retro-shadow);
+  margin-bottom: 20rpx;
+}
+
+/* ---------- 自定义 Checkbox ---------- */
+.custom-checkbox {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  border: 3rpx solid var(--active-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.custom-checkbox.checked {
+  background: var(--primary-pink);
+  border-color: var(--primary-pink);
+}
+
+.check-icon {
+  font-size: 24rpx;
+  color: var(--white);
+  font-weight: bold;
+}
+
+/* ---------- 商品图片 ---------- */
+.item-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: var(--btn-radius);
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+/* ---------- 商品信息 ---------- */
+.item-detail {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 8rpx;
+}
+
+.item-spec {
+  display: inline-block;
+  background: rgba(226, 125, 154, 0.1);
+  border: 2rpx solid var(--primary-pink);
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.spec-text {
+  font-size: 22rpx;
+  color: var(--primary-pink);
+}
+
+.item-price {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: var(--active-red);
+}
+
+/* ---------- 数量加减器 ---------- */
+.quantity-stepper {
+  display: flex;
+  align-items: center;
+  border: 2rpx solid var(--active-red);
+  border-radius: 8rpx;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.stepper-btn {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--active-red);
+}
+
+.stepper-btn.minus {
+  border-right: 2rpx solid var(--active-red);
+}
+
+.stepper-btn.plus {
+  border-left: 2rpx solid var(--active-red);
+}
+
+.stepper-num {
+  min-width: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+/* ---------- 推荐商品 ---------- */
+.recommend-section {
+  padding: 30rpx 40rpx 200rpx;
+}
+
+.recommend-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.header-line {
+  flex: 1;
+  height: 1rpx;
+  background: var(--text-grey);
+}
+
+.header-title {
+  font-size: 28rpx;
+  color: var(--text-dark);
+  padding: 0 20rpx;
+  font-weight: bold;
+}
+
+.recommend-scroll {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.recommend-card {
+  display: inline-block;
+  width: 200rpx;
+  margin-right: 20rpx;
+  background: var(--white);
+  border: var(--border-thick);
+  border-radius: var(--card-radius);
+  box-shadow: var(--retro-shadow);
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.recommend-img {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.recommend-name {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-dark);
+  padding: 12rpx 12rpx 6rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recommend-price {
+  display: block;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: var(--active-red);
+  padding: 0 12rpx 16rpx;
+  text-align: left;
+}
+
+/* ---------- 吸底结算栏 ---------- */
+.settlement-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 40rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: var(--white);
+  border-top: var(--border-thick);
+  box-shadow: 0 -4rpx 12rpx rgba(122, 34, 56, 0.15);
+}
+
+.settlement-left {
+  display: flex;
+  align-items: center;
+}
+
+.settlement-total {
+  font-size: 28rpx;
+  color: var(--text-dark);
+  margin-left: 20rpx;
+}
+
+.total-price {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--active-red);
+}
+
+.settlement-btn {
+  background: var(--active-red);
+  border-radius: 40rpx;
+  padding: 20rpx 48rpx;
+  box-shadow: var(--retro-shadow);
+}
+
+.btn-text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: var(--white);
+}

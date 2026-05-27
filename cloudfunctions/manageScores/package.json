@@ -1,0 +1,9 @@
+{
+  "name": "manageScores",
+  "version": "1.0.0",
+  "description": "积分变动与兑换原子操作",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

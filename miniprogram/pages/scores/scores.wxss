@@ -1,5 +1,11 @@
 /* pages/scores/scores.wxss */
 
+/* ---------- 积分商城页面背景 ---------- */
+.scores-page {
+  background: #F8E8EE;
+  min-height: 100vh;
+}
+
 /* ---------- Rewards 装饰头部 ---------- */
 .rewards-header {
   position: relative;
@@ -15,7 +21,7 @@
   transform: translate(-50%, -50%);
   font-size: 200rpx;
   font-weight: bold;
-  color: rgba(226, 125, 154, 0.12);
+  color: rgba(241, 120, 182, 0.15);
   white-space: nowrap;
   pointer-events: none;
   letter-spacing: 10rpx;
@@ -26,7 +32,7 @@
   display: block;
   font-size: 44rpx;
   font-weight: bold;
-  color: var(--active-red);
+  color: #F178B6;
   margin-bottom: 12rpx;
 }
 
@@ -34,7 +40,20 @@
   position: relative;
   display: block;
   font-size: 26rpx;
-  color: var(--text-grey);
+  color: #999999;
+  margin-bottom: 16rpx;
+}
+
+.user-scores {
+  position: relative;
+  display: inline-block;
+  font-size: 28rpx;
+  color: #F178B6;
+  font-weight: bold;
+  background: rgba(241, 120, 182, 0.1);
+  padding: 8rpx 24rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid #F178B6;
 }
 
 /* ---------- 代金券网格 ---------- */
@@ -45,19 +64,19 @@
   padding: 0 30rpx 40rpx;
 }
 
+/* ---------- 代金券卡片 ---------- */
 .coupon-card {
-  background: var(--white);
-  border-radius: var(--card-radius);
+  background: #FFFFFF;
+  border-radius: 16rpx;
   overflow: hidden;
-  border: var(--border-thick);
-  box-shadow: var(--retro-shadow);
   display: flex;
   flex-direction: column;
 }
 
+/* ---------- 代金券图片 ---------- */
 .coupon-img-wrap {
   width: 100%;
-  padding-bottom: 65%;
+  padding-bottom: 66%;
   position: relative;
   overflow: hidden;
 }
@@ -70,55 +89,56 @@
   height: 100%;
 }
 
+/* ---------- 代金券信息 ---------- */
 .coupon-info {
-  padding: 16rpx 20rpx 12rpx;
+  padding: 16rpx 16rpx 12rpx;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.coupon-name {
-  display: block;
-  font-size: 28rpx;
-  font-weight: bold;
-  color: var(--text-dark);
-  margin-bottom: 10rpx;
-  text-align: left;
+.coupon-title {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 8rpx;
+  text-align: center;
 }
 
 .coupon-points {
   display: flex;
   align-items: baseline;
+  justify-content: center;
 }
 
 .points-num {
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: bold;
-  color: var(--active-red);
+  color: #F178B6;
 }
 
 .points-label {
-  font-size: 22rpx;
-  color: var(--text-grey);
+  font-size: 20rpx;
+  color: #999999;
   margin-left: 4rpx;
 }
 
-/* ---------- 兑换按钮 ---------- */
+/* ---------- 加号按钮 ---------- */
 .exchange-btn {
-  margin: 0 20rpx 20rpx;
-  width: 64rpx;
-  height: 64rpx;
+  width: 56rpx;
+  height: 56rpx;
   border-radius: 50%;
-  background: var(--primary-pink);
-  border: var(--border-thick);
+  background: #F178B6;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: var(--retro-shadow);
   align-self: flex-end;
+  margin: 8rpx 12rpx 12rpx;
 }
 
 .exchange-icon {
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: bold;
-  color: var(--white);
+  color: #FFFFFF;
   line-height: 1;
 }

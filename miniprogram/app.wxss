@@ -51,10 +51,22 @@ image {
   display: block;
 }
 
-/* ---------- Global Active States ---------- */
-view:active {
+/* ---------- Global Active States (for clickable cards/buttons) ---------- */
+.clickable:active {
   opacity: 0.85;
-  transform: scale(0.98);
+  transform: scale(0.97);
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+/* ---------- Interactive Element Active States ---------- */
+.btn-primary:active,
+.cart-icon-wrap:active,
+.exchange-btn:active,
+.settlement-btn:active,
+.stepper-btn:active {
+  opacity: 0.85;
+  transform: scale(0.95);
+  transition: transform 0.1s ease, opacity 0.1s ease;
 }
 
 /* ---------- Safe Area Padding Helper ---------- */

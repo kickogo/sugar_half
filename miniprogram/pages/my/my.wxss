@@ -1,6 +1,6 @@
 /* pages/my/my.wxss */
 
-/* ---------- 头部背景 ---------- */
+/* ---------- Header Background ---------- */
 .header-bg {
   position: relative;
   height: 400rpx;
@@ -48,7 +48,7 @@
   text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.3);
 }
 
-/* ---------- VIP 会员卡 ---------- */
+/* ---------- VIP Card ---------- */
 .vip-card {
   display: flex;
   justify-content: space-between;
@@ -109,8 +109,8 @@
   color: var(--white);
 }
 
-/* ---------- 功能列表 ---------- */
-.功能列表 {
+/* ---------- Menu List ---------- */
+.menu-list {
   margin: 30rpx 40rpx 40rpx;
   background: var(--white);
   border: var(--border-thick);
@@ -119,7 +119,7 @@
   overflow: hidden;
 }
 
-.功能项 {
+.menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -127,26 +127,26 @@
   border-bottom: 1rpx solid #F5F5F5;
 }
 
-.功能项:last-child {
+.menu-item:last-child {
   border-bottom: none;
 }
 
-.功能左 {
+.menu-left {
   display: flex;
   align-items: center;
 }
 
-.功能图标 {
+.menu-icon {
   font-size: 36rpx;
   margin-right: 16rpx;
 }
 
-.功能名称 {
+.menu-name {
   font-size: 28rpx;
   color: var(--text-dark);
 }
 
-.功能箭头 {
+.menu-arrow {
   font-size: 36rpx;
   color: var(--text-grey);
 }

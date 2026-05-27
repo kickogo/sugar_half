@@ -1,26 +1,37 @@
 <!-- pages/scores/scores.wxml -->
-<view class="container">
-  <!-- Rewards 装饰背景 -->
+<view class="container scores-page">
+  <!-- Rewards 装饰头部 -->
   <view class="rewards-header">
     <view class="rewards-bg-text">Rewards</view>
     <text class="rewards-title">积分商城</text>
     <text class="rewards-subtitle">专属兑换福利</text>
+    <text class="user-scores">当前积分：{{userScores}}</text>
   </view>
 
-  <!-- 积分商品网格 -->
+  <!-- 代金券网格 -->
   <view class="coupon-grid">
-    <view class="coupon-card" wx:for="{{couponList}}" wx:key="id">
+    <view
+      class="coupon-card clickable"
+      wx:for="{{couponList}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="redeemCoupon"
+    >
+      <!-- 代金券图案 -->
       <view class="coupon-img-wrap">
         <image class="coupon-img" src="{{item.image}}" mode="aspectFill"></image>
       </view>
+
+      <!-- 代金券信息 -->
       <view class="coupon-info">
-        <text class="coupon-name">{{item.name}}</text>
+        <view class="coupon-title">{{item.title}}</view>
         <view class="coupon-points">
-          <text class="points-num">{{item.points}}</text>
+          <text class="points-num">{{item.requiredScores}}</text>
           <text class="points-label">积分</text>
         </view>
       </view>
-      <!-- 兑换按钮 -->
+
+      <!-- 加号按钮 -->
       <view class="exchange-btn">
         <text class="exchange-icon">+</text>
       </view>

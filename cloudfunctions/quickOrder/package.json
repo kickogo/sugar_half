@@ -1,0 +1,9 @@
+{
+  "name": "quickOrder",
+  "version": "1.0.0",
+  "description": "购物车订单核心逻辑",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

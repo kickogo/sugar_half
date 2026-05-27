@@ -8,21 +8,21 @@
   <!-- 门店选择卡片 -->
   <view class="store-card">
     <view class="store-info">
-      <text class="store-name">静宜和她的朋友（龙湖金街店）</text>
+      <text class="store-name">甜序（花样城店）</text>
       <text class="store-edit">编辑</text>
     </view>
   </view>
 
   <!-- 购物车列表 -->
   <view class="cart-list">
-    <view class="cart-item" wx:for="{{cartItems}}" wx:key="id">
+    <view class="cart-item clickable" wx:for="{{cartItems}}" wx:key="_id">
       <!-- 自定义 Checkbox -->
-      <view class="custom-checkbox {{item.checked ? 'checked' : ''}}" bindtap="toggleCheck" data-id="{{item.id}}">
+      <view class="custom-checkbox {{item.checked ? 'checked' : ''}}" bindtap="toggleCheck" data-id="{{item._id}}">
         <text class="check-icon" wx:if="{{item.checked}}">✓</text>
       </view>
 
       <!-- 商品图片 -->
-      <image class="item-img" src="{{item.image}}" mode="aspectFill"></image>
+      <image class="item-img" src="{{item.displayUrl || item.imageUrl}}" mode="aspectFill"></image>
 
       <!-- 商品信息 -->
       <view class="item-detail">
@@ -35,9 +35,9 @@
 
       <!-- 数量加减器 -->
       <view class="quantity-stepper">
-        <view class="stepper-btn minus" bindtap="decrease" data-id="{{item.id}}">-</view>
+        <view class="stepper-btn minus" bindtap="decrease" data-id="{{item._id}}">-</view>
         <text class="stepper-num">{{item.quantity}}</text>
-        <view class="stepper-btn plus" bindtap="increase" data-id="{{item.id}}">+</view>
+        <view class="stepper-btn plus" bindtap="increase" data-id="{{item._id}}">+</view>
       </view>
     </view>
   </view>
@@ -50,8 +50,8 @@
       <view class="header-line"></view>
     </view>
     <scroll-view class="recommend-scroll" scroll-x="true" white-space="nowrap">
-      <view class="recommend-card" wx:for="{{recommendItems}}" wx:key="id">
-        <image class="recommend-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="recommend-card clickable" wx:for="{{recommendItems}}" wx:key="_id">
+        <image class="recommend-img" src="{{item.displayUrl || item.imageUrl}}" mode="aspectFill"></image>
         <text class="recommend-name">{{item.name}}</text>
         <text class="recommend-price">¥{{item.price}}</text>
       </view>

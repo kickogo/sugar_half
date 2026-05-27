@@ -1,50 +1,206 @@
 <!-- pages/index/index.wxml -->
 <view class="container">
-  <!-- 顶部轮播区 -->
-  <view class="swiper-section">
-    <!-- 棋盘格背景平铺 -->
-    <view class="checkerboard-bg"></view>
+  <!-- 01 固定导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-logo">
+      <text class="nav-logo-text">Tosweet 甜讯蛋糕</text>
+    </view>
+    <view class="nav-search" bindtap="goToGoods">
+      <text class="nav-search-icon">🔍</text>
+      <text class="nav-search-placeholder">搜蛋糕款式/口味/关键词</text>
+    </view>
+    <view class="nav-icons">
+      <view class="nav-icon-btn" bindtap="goToGoods">
+        <text class="nav-icon">💬</text>
+      </view>
+      <view class="nav-icon-btn" bindtap="goToCart">
+        <text class="nav-icon">🛒</text>
+        <view class="cart-badge" wx:if="{{cartCount > 0}}">{{cartCount > 99 ? '99+' : cartCount}}</view>
+      </view>
+    </view>
+  </view>
 
-    <!-- 轮播图 -->
-    <swiper class="main-swiper" circular="true" autoplay="true" interval="3000" duration="500">
-      <swiper-item wx:for="{{banners}}" wx:key="id">
-        <view class="cake-wrapper">
-          <view class="scalloped-border">
-            <image class="cake-img" src="{{item.image}}" mode="aspectFill"></image>
+  <!-- 页面主体（偏移导航栏高度） -->
+  <view class="page-body">
+    <!-- 02 首屏轮播Banner区 -->
+    <view class="banner-section">
+      <swiper class="banner-swiper" circular="true" autoplay="true" interval="4000" duration="500">
+        <swiper-item wx:for="{{banners}}" wx:key="id">
+          <view class="banner-item">
+            <view class="banner-cake-wrap">
+              <view class="banner-cake-border">
+                <image class="banner-cake-img" src="{{item.image}}" mode="aspectFill"></image>
+              </view>
+            </view>
+            <view class="banner-text">
+              <text class="banner-title">{{item.title}}</text>
+              <text class="banner-subtitle">{{item.subtitle}}</text>
+              <view class="banner-btn">{{item.btnText}}</view>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- 03 快捷功能入口 -->
+    <view class="quick-entries">
+      <view class="quick-card clickable" wx:for="{{quickEntries}}" wx:key="id" data-id="{{item.id}}" bindtap="onQuickTap">
+        <text class="quick-icon">{{item.icon}}</text>
+        <text class="quick-name">{{item.name}}</text>
+        <text class="quick-note" wx:if="{{item.note}}">{{item.note}}</text>
+      </view>
+    </view>
+
+    <!-- 04 福利活动模块 -->
+    <view class="section-wrap">
+      <view class="goods-section-title">🎁 新人&会员福利</view>
+      <view class="welfare-card">
+        <view class="welfare-item">
+          <text class="welfare-dot">•</text>
+          <text class="welfare-text">新人首单立减10元</text>
+        </view>
+        <view class="welfare-item">
+          <text class="welfare-dot">•</text>
+          <text class="welfare-text">消费1元=1积分（积分可兑券/甜品）</text>
+        </view>
+        <view class="welfare-item">
+          <text class="welfare-dot">•</text>
+          <text class="welfare-text">每月15日会员日全场9折</text>
+        </view>
+        <view class="welfare-btn">领取福利</view>
+      </view>
+    </view>
+
+    <!-- 05A 人气爆款推荐 -->
+    <view class="section-wrap">
+      <view class="section-header">
+        <text class="goods-section-title">🔥 人气爆款 闭眼入不踩雷</text>
+        <view class="section-more" bindtap="goToGoods">
+          <text>查看全部</text>
+          <text class="section-arrow">→</text>
+        </view>
+      </view>
+      <scroll-view class="product-scroll" scroll-x="true">
+        <view class="product-card clickable" wx:for="{{hotProducts}}" wx:key="id">
+          <view class="product-img-wrap">
+            <image class="product-img" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="product-tag">{{item.tag}}</view>
+          </view>
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-spec">{{item.spec}}</text>
+            <text class="product-price">¥{{item.price}}</text>
           </view>
         </view>
-      </swiper-item>
-    </swiper>
-
-    <!-- Jenny 品牌椭圆标签 -->
-    <view class="jenny-brand">
-      <text>Jenny</text>
+      </scroll-view>
     </view>
-  </view>
 
-  <!-- 客服小票 -->
-  <view class="service-ticket">
-    <view class="ticket-content">
-      <view class="ticket-header">ONLINE SERVICE</view>
-      <view class="ticket-body">客服小票</view>
-      <view class="ticket-footer">在线咨询</view>
+    <!-- 05B 当季新品专区 -->
+    <view class="section-wrap">
+      <view class="section-header">
+        <text class="goods-section-title">✨ 当季新品 夏日限定</text>
+        <view class="section-more" bindtap="goToGoods">
+          <text>了解更多</text>
+          <text class="section-arrow">→</text>
+        </view>
+      </view>
+      <scroll-view class="product-scroll" scroll-x="true">
+        <view class="product-card clickable" wx:for="{{newProducts}}" wx:key="id">
+          <view class="product-img-wrap">
+            <image class="product-img" src="{{item.image}}" mode="aspectFill"></image>
+            <view class="product-tag new-tag">{{item.tag}}</view>
+          </view>
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-spec">{{item.spec}}</text>
+            <text class="product-price">¥{{item.price}}</text>
+          </view>
+        </view>
+      </scroll-view>
     </view>
-  </view>
 
-  <!-- 时令鲜果金刚位 -->
-  <view class="fruit-section">
-    <view class="fruit-left">
-      <text class="fruit-title">时令鲜果</text>
-      <text class="fruit-sub">Summer Fresh</text>
+    <!-- 05C 场景化推荐 -->
+    <view class="section-wrap">
+      <view class="goods-section-title">🎂 按场景选蛋糕</view>
+      <view class="scene-grid">
+        <view class="scene-item clickable" wx:for="{{sceneItems}}" wx:key="id" data-id="{{item.id}}" bindtap="goToScene">
+          <text class="scene-icon">{{item.icon}}</text>
+          <text class="scene-name">{{item.name}}</text>
+        </view>
+      </view>
     </view>
-    <view class="fruit-arrow">→</view>
-  </view>
 
-  <!-- 底部气泡框 -->
-  <view class="bubble-section">
-    <view class="bubble-card">
-      <text class="bubble-text">查看全部蛋糕</text>
-      <text class="bubble-arrow">›</text>
+    <!-- 06 品牌信任背书 -->
+    <view class="section-wrap">
+      <view class="goods-section-title">💖 为什么选择 Tosweet？</view>
+      <view class="trust-grid">
+        <view class="trust-item">
+          <text class="trust-icon">🥛</text>
+          <text class="trust-text">纯动物奶油无植脂末</text>
+        </view>
+        <view class="trust-item">
+          <text class="trust-icon">🔥</text>
+          <text class="trust-text">当日现烤新鲜不隔夜</text>
+        </view>
+        <view class="trust-item">
+          <text class="trust-icon">🚚</text>
+          <text class="trust-text">同城冷链配送破损包赔</text>
+        </view>
+        <view class="trust-item">
+          <text class="trust-icon">🎨</text>
+          <text class="trust-text">支持全店定制</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 07 用户评价区 -->
+    <view class="section-wrap">
+      <view class="goods-section-title">💬 大家都在说</view>
+      <scroll-view class="review-scroll" scroll-x="true">
+        <view class="review-card" wx:for="{{reviews}}" wx:key="id">
+          <view class="review-header">
+            <text class="review-avatar">{{item.avatar}}</text>
+            <view class="review-user">
+              <text class="review-nickname">{{item.nickname}}</text>
+              <view class="review-stars">
+            <text class="star-icon">⭐</text>
+            <text class="star-icon">⭐</text>
+            <text class="star-icon">⭐</text>
+            <text class="star-icon">⭐</text>
+            <text class="star-icon">⭐</text>
+          </view>
+            </view>
+          </view>
+          <text class="review-text">{{item.text}}</text>
+          <text class="review-product">购于：{{item.product}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 08 门店信息 -->
+    <view class="section-wrap store-section">
+      <view class="goods-section-title">📍 门店地址 & 营业时间</view>
+      <view class="store-card">
+        <view class="store-name-row">
+          <text class="store-name">{{storeInfo.name}}</text>
+          <view class="store-map-btn" bindtap="goToMap">
+            <text>导航</text>
+            <text class="section-arrow">→</text>
+          </view>
+        </view>
+        <view class="store-info-row">
+          <text class="store-icon">📍</text>
+          <text class="store-address">{{storeInfo.address}}</text>
+        </view>
+        <view class="store-info-row">
+          <text class="store-icon">🕐</text>
+          <text class="store-hours">营业时间：{{storeInfo.hours}}</text>
+        </view>
+        <view class="store-info-row">
+          <text class="store-icon">🚚</text>
+          <text class="store-service">{{storeInfo.service}}</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>

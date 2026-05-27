@@ -10,7 +10,7 @@
 
   <!-- 荔枝季 Banner -->
   <view class="banner-wrap">
-    <image class="lychee-banner" src="/image/banners/背景.png" mode="widthFix"></image>
+    <image class="lychee-banner" src="{{bannerUrl}}" mode="widthFix"></image>
   </view>
 
   <!-- 分割线标题 -->
@@ -22,7 +22,7 @@
 
   <!-- 双列商品网格 -->
   <view class="goods-grid">
-    <view class="goods-card" wx:for="{{goodsList}}" wx:key="id">
+    <view class="goods-card clickable" wx:for="{{goodsList}}" wx:key="_id">
       <view class="goods-img-wrap">
         <image class="goods-img" src="{{item.image}}" mode="aspectFill"></image>
         <!-- 印章贴纸 -->

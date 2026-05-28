@@ -75,10 +75,21 @@
 
 /* ---------- 代金券图片 ---------- */
 .coupon-img-wrap {
-  width: 100%;
-  padding-bottom: 66%;
+  width: 60%;
+  margin: 0 auto 16rpx;
+  padding-bottom: 60%;
   position: relative;
   overflow: hidden;
+}
+
+.coupon-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 16rpx 16rpx;
 }
 
 .coupon-img {

@@ -4,10 +4,10 @@
 .header-bg {
   position: relative;
   height: 400rpx;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.bridge-illustration {
+.header-bg-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,10 +17,11 @@
 
 .user-info {
   position: absolute;
-  bottom: 40rpx;
+  top: 40rpx;
   left: 40rpx;
   display: flex;
   align-items: center;
+  z-index: 20;
 }
 
 .avatar-placeholder {
@@ -53,9 +54,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: -80rpx 40rpx 0;
+  margin: 40rpx 40rpx 0;
   padding: 32rpx;
-  background: linear-gradient(135deg, var(--vip-gold) 0%, #F5E6D3 100%);
+  background: var(--white);
   border: var(--border-thick);
   border-radius: var(--card-radius);
   box-shadow: var(--retro-shadow);
@@ -67,15 +68,15 @@
   flex: 1;
 }
 
-.vip-title {
-  display: block;
-  font-size: 36rpx;
+.vip-tag {
+  display: inline-block;
+  font-size: 32rpx;
   font-weight: bold;
   color: var(--active-red);
   margin-bottom: 6rpx;
 }
 
-.vip-subtitle {
+.vip-desc {
   display: block;
   font-size: 22rpx;
   color: var(--text-grey);
@@ -94,19 +95,19 @@
 }
 
 .vip-right {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  background: var(--active-red);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-shrink: 0;
+  margin-left: 20rpx;
 }
 
-.vip-level {
-  font-size: 28rpx;
-  font-weight: bold;
+.vip-btn {
+  background: var(--active-red);
   color: var(--white);
+  font-size: 26rpx;
+  font-weight: bold;
+  padding: 16rpx 24rpx;
+  border-radius: 40rpx;
+  box-shadow: var(--retro-shadow);
+  white-space: nowrap;
 }
 
 /* ---------- Menu List ---------- */
@@ -124,7 +125,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 24rpx;
-  border-bottom: 1rpx solid #F5F5F5;
+  border-bottom: 1rpx solid var(--bg-main);
 }
 
 .menu-item:last-child {
@@ -149,4 +150,12 @@
 .menu-arrow {
   font-size: 36rpx;
   color: var(--text-grey);
+}
+
+/* ---------- Copyright ---------- */
+.copyright {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-grey);
+  padding: 20rpx 0 120rpx;
 }

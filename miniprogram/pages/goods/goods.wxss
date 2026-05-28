@@ -31,37 +31,52 @@
   font-size: 28rpx;
 }
 
-/* ---------- 荔枝 Banner ---------- */
-.banner-wrap {
-  padding: 0 30rpx;
+/* ---------- 左侧分类栏 + 右侧商品列表 ---------- */
+.category-layout {
+  display: flex;
+  height: calc(100vh - 120rpx - env(safe-area-inset-bottom));
 }
 
-.lychee-banner {
-  width: 100%;
-  border-radius: var(--btn-radius);
+/* 左侧分类栏 */
+.category-sidebar {
+  width: 25%;
+  flex-shrink: 0;
+  background: var(--white);
+  border-right: var(--border-thick);
 }
 
-/* ---------- 分割线标题 ---------- */
-.section-title-wrap {
+.category-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40rpx 0 30rpx;
-  padding: 0 40rpx;
+  padding: 28rpx 0;
+  border-bottom: 2rpx solid var(--bg-main);
+  background: var(--white);
+  transition: background 0.2s;
 }
 
-.title-line {
-  flex: 1;
-  height: 2rpx;
-  background: linear-gradient(90deg, transparent, var(--active-red), transparent);
+.category-item.active {
+  background: var(--bg-main);
+  border-left: 6rpx solid var(--active-red);
 }
 
-.section-title {
-  font-size: 30rpx;
-  font-weight: bold;
+.category-item.active .category-name {
   color: var(--active-red);
-  padding: 0 24rpx;
-  white-space: nowrap;
+  font-weight: bold;
+}
+
+.category-name {
+  font-size: 26rpx;
+  color: var(--text-dark);
+  text-align: center;
+  padding: 0 8rpx;
+}
+
+/* 右侧商品列表 */
+.goods-scroll {
+  width: 75%;
+  flex: 1;
+  height: 100%;
 }
 
 /* ---------- 双列商品网格 ---------- */
@@ -69,7 +84,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 24rpx;
-  padding: 0 30rpx 40rpx;
+  padding: 24rpx;
 }
 
 .goods-card {
@@ -83,7 +98,7 @@
 .goods-img-wrap {
   position: relative;
   width: 100%;
-  padding-bottom: 100%; /* 1:1 正方形 */
+  padding-bottom: 100%;
   overflow: hidden;
 }
 
@@ -165,4 +180,17 @@
   font-weight: bold;
   color: var(--active-red);
   text-align: left;
+}
+
+/* ---------- 空状态 ---------- */
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-grey);
 }

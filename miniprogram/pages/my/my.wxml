@@ -1,35 +1,35 @@
 <!-- pages/my/my.wxml -->
 <view class="container">
-  <!-- 顶部大桥插画背景 -->
+  <!-- 顶部背景 -->
   <view class="header-bg">
-    <image class="bridge-illustration" src="{{backgroundUrl}}" mode="aspectFill"></image>
+    <image class="header-bg-img" src="{{backgroundUrl}}" mode="aspectFill"></image>
     <view class="user-info">
       <view class="avatar-placeholder">
-        <text class="avatar-text">静</text>
+        <text class="avatar-text">甜</text>
       </view>
-      <text class="username">甜序</text>
+      <text class="username">Tosweet 甜讯蛋糕</text>
     </view>
   </view>
 
   <!-- VIP 会员卡 -->
   <view class="vip-card">
     <view class="vip-left">
-      <text class="vip-title">甜序会员卡</text>
-      <text class="vip-subtitle">VIP Member</text>
+      <view class="vip-tag">甜讯会员卡 VIP</view>
+      <text class="vip-desc">立即开卡，尊享超值权益</text>
       <view class="vip-benefits">
-        <text class="benefit-item">✓ 生日专属蛋糕8折</text>
-        <text class="benefit-item">✓ 优先配送</text>
-        <text class="benefit-item">✓ 积分双倍</text>
+        <text class="benefit-item">🎂 生日专属蛋糕8折</text>
+        <text class="benefit-item">🚚 优先配送</text>
+        <text class="benefit-item">🎁 积分双倍</text>
       </view>
     </view>
     <view class="vip-right">
-      <text class="vip-level">金卡</text>
+      <view class="vip-btn" bindtap="onVIPTap">立即领卡</view>
     </view>
   </view>
 
   <!-- 功能列表 -->
   <view class="menu-list">
-    <view class="menu-item clickable" wx:for="{{menuItems}}" wx:key="id">
+    <view class="menu-item clickable" wx:for="{{menuItems}}" wx:key="id" data-id="{{item.id}}" bindtap="onMenuTap">
       <view class="menu-left">
         <text class="menu-icon">{{item.icon}}</text>
         <text class="menu-name">{{item.name}}</text>
@@ -37,4 +37,7 @@
       <text class="menu-arrow">›</text>
     </view>
   </view>
+
+  <!-- 底部版权 -->
+  <view class="copyright">© Tosweet 甜讯蛋糕</view>
 </view>

@@ -27,16 +27,16 @@ exports.main = async (event, context) => {
     const validItems = [];
     for (const item of cartRes.data) {
       try {
-        const goodsRes = await db.collection('goods').doc(item.goodsId).get();
-        if (goodsRes.data && goodsRes.data.status === 1) {
+        const goodsRes = await db.collection('goods').where({ id: Number(item.goodsId) }).get();
+        if (goodsRes.data && goodsRes.data.length > 0 && goodsRes.data[0].status === 1) {
           validItems.push({
             _id: item._id,
             goodsId: item.goodsId,
-            name: goodsRes.data.name,
+            name: goodsRes.data[0].name,
             spec: item.spec,
-            price: goodsRes.data.price,
+            price: goodsRes.data[0].price,
             quantity: item.quantity,
-            imageUrl: goodsRes.data.imageUrl,
+            imageUrl: goodsRes.data[0].imageUrl,
             checked: false
           });
         }

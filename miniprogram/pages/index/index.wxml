@@ -24,6 +24,7 @@
   <view class="page-body">
     <!-- 02 首屏轮播Banner区 -->
     <view class="banner-section">
+      <image class="banner-bg-img" src="/image/banners/背景.png" mode="aspectFill"></image>
       <swiper class="banner-swiper" circular="true" autoplay="true" interval="4000" duration="500">
         <swiper-item wx:for="{{banners}}" wx:key="id">
           <view class="banner-item">

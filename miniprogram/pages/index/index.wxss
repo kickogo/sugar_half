@@ -102,12 +102,20 @@
    02 首屏轮播Banner区
    ============================================ */
 .banner-section {
-  background: url('/image/banners/背景.png') no-repeat center center;
-  background-size: cover;
+  background: var(--bg-main);
   padding: 30rpx 0 60rpx;
   position: relative;
   z-index: 1;
   overflow: visible;
+}
+
+.banner-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .banner-swiper {

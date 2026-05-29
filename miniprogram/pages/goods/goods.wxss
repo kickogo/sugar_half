@@ -134,9 +134,6 @@
 
 /* 购物车小图标 */
 .cart-icon-wrap {
-  position: absolute;
-  bottom: 12rpx;
-  right: 12rpx;
   width: 56rpx;
   height: 56rpx;
   border-radius: var(--btn-radius);
@@ -182,6 +179,13 @@
   text-align: left;
 }
 
+.goods-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12rpx;
+}
+
 /* ---------- 空状态 ---------- */
 .empty-state {
   display: flex;
@@ -193,4 +197,188 @@
 .empty-text {
   font-size: 28rpx;
   color: var(--text-grey);
+}
+
+/* ============================================
+   规格选择弹窗
+   ============================================ */
+.spec-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.spec-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.spec-sheet {
+  position: relative;
+  background: var(--bg-main);
+  border-radius: 32rpx 32rpx 0 0;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部标题栏 */
+.spec-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 40rpx 20rpx;
+  border-bottom: 2rpx solid rgba(226, 125, 154, 0.2);
+  flex-shrink: 0;
+}
+
+.spec-product-name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: var(--active-red);
+}
+
+.spec-close-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: var(--white);
+  border: var(--border-thick);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40rpx;
+  color: var(--text-grey);
+  line-height: 1;
+}
+
+/* 规格内容区 */
+.spec-content {
+  flex: 1;
+  padding: 24rpx 40rpx;
+  overflow-y: auto;
+}
+
+/* 每个规格区块 */
+.spec-section {
+  margin-bottom: 36rpx;
+}
+
+.spec-section-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 16rpx;
+}
+
+.spec-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+/* 单个选项 */
+.spec-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  background: var(--white);
+  border: 3rpx solid #E8C8D4;
+  border-radius: var(--btn-radius);
+  min-width: 140rpx;
+}
+
+.spec-option.active {
+  background: var(--primary-pink);
+  border-color: var(--active-red);
+}
+
+.spec-option-name {
+  font-size: 26rpx;
+  color: var(--text-dark);
+  margin-bottom: 4rpx;
+}
+
+.spec-option-price {
+  font-size: 22rpx;
+  color: var(--text-grey);
+}
+
+.spec-option.active .spec-option-name,
+.spec-option.active .spec-option-price {
+  color: var(--white);
+}
+
+/* 底部价格+按钮 */
+.spec-footer {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 40rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: var(--white);
+  border-top: var(--border-thick);
+  flex-shrink: 0;
+}
+
+.spec-total-info {
+  flex: 1;
+  min-width: 0;
+  margin-right: 20rpx;
+}
+
+.spec-core-line {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 6rpx;
+  line-height: 1.4;
+}
+
+.spec-extra-line {
+  font-size: 22rpx;
+  color: var(--text-grey);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spec-price-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.spec-total-label {
+  font-size: 22rpx;
+  color: var(--text-grey);
+}
+
+.spec-total-num {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--active-red);
+}
+
+.spec-add-btn {
+  background: var(--active-red);
+  color: var(--white);
+  font-size: 30rpx;
+  font-weight: bold;
+  padding: 20rpx 48rpx;
+  border-radius: 40rpx;
+  box-shadow: var(--retro-shadow);
 }

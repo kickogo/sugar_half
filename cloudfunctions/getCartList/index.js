@@ -23,27 +23,17 @@ exports.main = async (event, context) => {
       .where({ _openid: openid })
       .get();
 
-    // 过滤已下架的商品
-    const validItems = [];
-    for (const item of cartRes.data) {
-      try {
-        const goodsRes = await db.collection('goods').where({ id: Number(item.goodsId) }).get();
-        if (goodsRes.data && goodsRes.data.length > 0 && goodsRes.data[0].status === 1) {
-          validItems.push({
-            _id: item._id,
-            goodsId: item.goodsId,
-            name: goodsRes.data[0].name,
-            spec: item.spec,
-            price: goodsRes.data[0].price,
-            quantity: item.quantity,
-            imageUrl: goodsRes.data[0].imageUrl,
-            checked: false
-          });
-        }
-      } catch (err) {
-        console.warn(`[getCartList] 商品不存在或已下架: ${item.goodsId}`);
-      }
-    }
+    // 直接返回购物车商品，不查询goods集合
+    const validItems = cartRes.data.map(item => ({
+      _id: item._id,
+      goodsId: item.goodsId,
+      name: item.name,
+      spec: item.spec,
+      price: item.price,
+      quantity: item.quantity,
+      imageUrl: item.imageUrl,
+      checked: false
+    }));
 
     return {
       success: true,

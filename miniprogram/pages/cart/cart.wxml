@@ -22,14 +22,13 @@
       </view>
 
       <!-- 商品图片 -->
-      <image class="item-img" src="{{item.displayUrl || item.imageUrl}}" mode="aspectFill"></image>
+      <image class="item-img" src="{{item.imageUrl}}" mode="aspectFill" bindtap="onItemTap" data-id="{{item._id}}"></image>
 
-      <!-- 商品信息 -->
-      <view class="item-detail">
+      <!-- 商品信息（点击可重新选规格） -->
+      <view class="item-detail" bindtap="onItemTap" data-id="{{item._id}}">
         <text class="item-name">{{item.name}}</text>
-        <view class="item-spec">
-          <text class="spec-text">{{item.spec}}</text>
-        </view>
+        <text class="item-core-spec">{{item.coreSpec}}</text>
+        <text class="item-extra-spec">{{item.extraSpec}}</text>
         <text class="item-price">¥{{item.price}}</text>
       </view>
 
@@ -51,9 +50,16 @@
     </view>
     <scroll-view class="recommend-scroll" scroll-x="true" white-space="nowrap">
       <view class="recommend-card clickable" wx:for="{{recommendItems}}" wx:key="_id">
-        <image class="recommend-img" src="{{item.displayUrl || item.imageUrl}}" mode="aspectFill"></image>
+        <view class="recommend-img-wrap">
+          <image class="recommend-img" src="{{item.imageUrl || item.image}}" mode="aspectFill"></image>
+        </view>
         <text class="recommend-name">{{item.name}}</text>
-        <text class="recommend-price">¥{{item.price}}</text>
+        <view class="recommend-price-row">
+          <text class="recommend-price">¥{{item.price}}</text>
+          <view class="cart-icon-wrap" catchtap="onRecommendItemTap" data-id="{{item.id}}">
+            <text class="cart-icon">🛒</text>
+          </view>
+        </view>
       </view>
     </scroll-view>
   </view>
@@ -68,6 +74,162 @@
     </view>
     <view class="settlement-btn">
       <text class="btn-text">去结算({{selectedCount}})</text>
+    </view>
+  </view>
+
+  <!-- 规格选择弹窗 -->
+  <view class="spec-popup" wx:if="{{showSpecPopup}}">
+    <view class="spec-mask" bindtap="onCloseSpecPopup"></view>
+    <view class="spec-sheet">
+      <!-- 顶部 -->
+      <view class="spec-header">
+        <text class="spec-product-name">{{currentEditItem.name}}</text>
+        <view class="spec-close-btn" bindtap="onCloseSpecPopup">×</view>
+      </view>
+
+      <!-- 规格内容 -->
+      <scroll-view class="spec-content" scroll-y="true">
+        <!-- 份量 -->
+        <view class="spec-section">
+          <text class="spec-section-title">份量</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.size === item.name ? 'active' : ''}}"
+              wx:for="{{specOptions.size}}"
+              wx:key="name"
+              data-spec="size"
+              data-name="{{item.name}}"
+              data-price="{{item.price}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item.name}}</text>
+              <text class="spec-option-price" wx:if="{{item.price > 0}}">+¥{{item.price}}</text>
+              <text class="spec-option-price" wx:else>¥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 夹心 -->
+        <view class="spec-section">
+          <text class="spec-section-title">夹心</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.filling === item ? 'active' : ''}}"
+              wx:for="{{specOptions.filling}}"
+              wx:key="*this"
+              data-spec="filling"
+              data-name="{{item}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 插牌/生日帽 -->
+        <view class="spec-section">
+          <text class="spec-section-title">插牌/生日帽</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.card === item ? 'active' : ''}}"
+              wx:for="{{specOptions.card}}"
+              wx:key="*this"
+              data-spec="card"
+              data-name="{{item}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 蜡烛 -->
+        <view class="spec-section">
+          <text class="spec-section-title">蜡烛</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.candle === item ? 'active' : ''}}"
+              wx:for="{{specOptions.candle}}"
+              wx:key="*this"
+              data-spec="candle"
+              data-name="{{item}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 贺卡 -->
+        <view class="spec-section">
+          <text class="spec-section-title">贺卡</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.mention === item ? 'active' : ''}}"
+              wx:for="{{specOptions.mention}}"
+              wx:key="*this"
+              data-spec="mention"
+              data-name="{{item}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 包装 -->
+        <view class="spec-section">
+          <text class="spec-section-title">包装</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.packaging === item.name ? 'active' : ''}}"
+              wx:for="{{specOptions.packaging}}"
+              wx:key="name"
+              data-spec="packaging"
+              data-name="{{item.name}}"
+              data-price="{{item.price}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item.name}}</text>
+              <text class="spec-option-price" wx:if="{{item.price > 0}}">+¥{{item.price}}</text>
+              <text class="spec-option-price" wx:else>¥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 奶油加量 -->
+        <view class="spec-section">
+          <text class="spec-section-title">奶油加量</text>
+          <view class="spec-options">
+            <view
+              class="spec-option {{selectedSpec.cream === item.name ? 'active' : ''}}"
+              wx:for="{{specOptions.cream}}"
+              wx:key="name"
+              data-spec="cream"
+              data-name="{{item.name}}"
+              data-price="{{item.price}}"
+              bindtap="onSpecOptionTap"
+            >
+              <text class="spec-option-name">{{item.name}}</text>
+              <text class="spec-option-price" wx:if="{{item.price > 0}}">+¥{{item.price}}</text>
+              <text class="spec-option-price" wx:else>¥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 底部价格+按钮 -->
+      <view class="spec-footer">
+        <view class="spec-total-info">
+          <view class="spec-core-line">{{currentSpecCore}}</view>
+          <view class="spec-extra-line">{{currentSpecExtra}}</view>
+        </view>
+        <view class="spec-price-wrap">
+          <text class="spec-total-label">合计</text>
+          <text class="spec-total-num">¥{{editTotalPrice}}</text>
+        </view>
+        <view class="spec-add-btn" bindtap="onConfirmSpecEdit">{{isRecommendAdd ? '加入购物车' : '确认修改'}}</view>
+      </view>
     </view>
   </view>
 </view>

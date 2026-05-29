@@ -38,7 +38,10 @@ exports.main = async (event, context) => {
     // 2. 生成订单
     const orderId = await createOrder(openid, items, totalPrice, address);
 
-    // 3. 清除已购买的购物车项
+    // 3. 更新商品购买次数
+    await updateBuyCount(items);
+
+    // 4. 清除已购买的购物车项
     await cleanCart(openid, cartItems);
 
     return {
@@ -127,6 +130,20 @@ async function cleanCart(openid, cartItems) {
     _openid: openid,
     goodsId: _.in(goodsIds)
   }).remove();
+}
+
+/**
+ * 更新商品购买次数
+ */
+async function updateBuyCount(items) {
+  const promises = items.map(item => {
+    return db.collection('goods').doc(item.goodsId).update({
+      data: {
+        buyCount: _.inc(item.quantity)
+      }
+    });
+  });
+  await Promise.all(promises);
 }
 
 /**

@@ -18,9 +18,9 @@ Page({
     // 商品规格选项（所有商品共用，可按商品独立扩展）
     specOptions: {
       size: [
-        { name: '6号 2-3人份', price: 0 },
-        { name: '8号 4-6人份', price: 40 },
-        { name: '10号 8-10人份', price: 80 }
+        { name: '6寸 2-3人份', price: 0 },
+        { name: '8寸 4-6人份', price: 40 },
+        { name: '10寸 8-10人份', price: 80 }
       ],
       filling: ['桑椹莓莓', '芋泥啵啵', '布丁燕麦脆'],
       card: ['需要', '不需要'],
@@ -37,14 +37,14 @@ Page({
     },
 
     allGoods: [
-      { id: 1, name: '芭乐布蕾', desc: '5英寸 · 0.5磅', price: 298, image: '/image/goods/商品_01.png', stampText: 'HOT', category: 'birthday' },
-      { id: 2, name: '蓝莓多多', desc: '5英寸 · 0.5磅', price: 328, image: '/image/goods/商品_02.png', stampText: 'NEW', category: 'couple' },
-      { id: 3, name: '茉莉玫瑰', desc: '5英寸 · 0.5磅', price: 288, image: '/image/goods/商品_03.png', stampText: '热卖', category: 'celebration' },
-      { id: 4, name: '芒果奶油', desc: '5英寸 · 0.5磅', price: 318, image: '/image/goods/商品_04.png', stampText: '热卖', category: 'birthday' },
-      { id: 5, name: '草莓甜心', desc: '5英寸 · 0.5磅', price: 308, image: '/image/goods/商品_05.png', stampText: '新品', category: 'kids' },
-      { id: 6, name: '巧克力浓郁', desc: '5英寸 · 0.5磅', price: 338, image: '/image/goods/商品_06.png', stampText: '热卖', category: 'couple' },
-      { id: 7, name: '抹茶红豆', desc: '5英寸 · 0.5磅', price: 298, image: '/image/goods/商品_07.png', stampText: 'NEW', category: 'seasonal' },
-      { id: 8, name: '柠檬清新', desc: '5英寸 · 0.5磅', price: 288, image: '/image/goods/商品_08.png', stampText: '热卖', category: 'giftbox' }
+      { id: 1, name: '芭乐布蕾', desc: '6寸', price: 298, image: '/image/goods/商品_01.png', stampText: 'HOT', category: 'birthday' },
+      { id: 2, name: '蓝莓多多', desc: '6寸', price: 328, image: '/image/goods/商品_02.png', stampText: 'NEW', category: 'couple' },
+      { id: 3, name: '茉莉玫瑰', desc: '6寸', price: 288, image: '/image/goods/商品_03.png', stampText: '热卖', category: 'celebration' },
+      { id: 4, name: '芒果奶油', desc: '6寸', price: 318, image: '/image/goods/商品_04.png', stampText: '热卖', category: 'birthday' },
+      { id: 5, name: '草莓甜心', desc: '6寸', price: 308, image: '/image/goods/商品_05.png', stampText: '新品', category: 'kids' },
+      { id: 6, name: '巧克力浓郁', desc: '6寸', price: 338, image: '/image/goods/商品_06.png', stampText: '热卖', category: 'couple' },
+      { id: 7, name: '抹茶红豆', desc: '6寸', price: 298, image: '/image/goods/商品_07.png', stampText: 'NEW', category: 'seasonal' },
+      { id: 8, name: '柠檬清新', desc: '6寸', price: 288, image: '/image/goods/商品_08.png', stampText: '热卖', category: 'giftbox' }
     ],
 
     filteredGoods: [],
@@ -53,7 +53,7 @@ Page({
     showSpecPopup: false,
     currentItem: null,
     selectedSpec: {
-      size: '6号 2-3人份',
+      size: '6寸 2-3人份',
       filling: '桑椹莓莓',
       card: '不需要',
       candle: '数字蜡烛',
@@ -81,7 +81,7 @@ Page({
       currentItem: item,
       totalPrice: item.price,
       selectedSpec: {
-        size: '6号 2-3人份',
+        size: '6寸 2-3人份',
         filling: '桑椹莓莓',
         card: '不需要',
         candle: '数字蜡烛',
@@ -89,7 +89,7 @@ Page({
         packaging: '礼盒',
         cream: '无需增量'
       },
-      currentSpecCore: '6号 2-3人份 · 桑椹莓莓',
+      currentSpecCore: '6寸 2-3人份 · 桑椹莓莓',
       currentSpecExtra: '不需要 · 数字蜡烛 · 不需要 · 礼盒 · 无需增量'
     });
   },

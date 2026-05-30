@@ -2,23 +2,24 @@
 const db = wx.cloud.database();
 
 // 静态商品数据（来自 goods.js，所有商品共用）
+// id 使用与数据库 _id 对应的字符串格式
 const ALL_GOODS = [
-  { id: 1, name: '芭乐布蕾', desc: '5英寸 · 0.5磅', price: 298, image: '/image/goods/商品_01.png', stampText: 'HOT', category: 'birthday' },
-  { id: 2, name: '蓝莓多多', desc: '5英寸 · 0.5磅', price: 328, image: '/image/goods/商品_02.png', stampText: 'NEW', category: 'couple' },
-  { id: 3, name: '茉莉玫瑰', desc: '5英寸 · 0.5磅', price: 288, image: '/image/goods/商品_03.png', stampText: '热卖', category: 'celebration' },
-  { id: 4, name: '芒果奶油', desc: '5英寸 · 0.5磅', price: 318, image: '/image/goods/商品_04.png', stampText: '热卖', category: 'birthday' },
-  { id: 5, name: '草莓甜心', desc: '5英寸 · 0.5磅', price: 308, image: '/image/goods/商品_05.png', stampText: '新品', category: 'kids' },
-  { id: 6, name: '巧克力浓郁', desc: '5英寸 · 0.5磅', price: 338, image: '/image/goods/商品_06.png', stampText: '热卖', category: 'couple' },
-  { id: 7, name: '抹茶红豆', desc: '5英寸 · 0.5磅', price: 298, image: '/image/goods/商品_07.png', stampText: 'NEW', category: 'seasonal' },
-  { id: 8, name: '柠檬清新', desc: '5英寸 · 0.5磅', price: 288, image: '/image/goods/商品_08.png', stampText: '热卖', category: 'giftbox' }
+  { id: "goods_001", name: '芭乐布蕾', desc: '6寸', price: 298, image: '/image/goods/商品_01.png', stampText: 'HOT', category: 'birthday' },
+  { id: "goods_002", name: '蓝莓多多', desc: '6寸', price: 328, image: '/image/goods/商品_02.png', stampText: 'NEW', category: 'couple' },
+  { id: "goods_003", name: '茉莉玫瑰', desc: '6寸', price: 288, image: '/image/goods/商品_03.png', stampText: '热卖', category: 'celebration' },
+  { id: "goods_004", name: '芒果奶油', desc: '6寸', price: 318, image: '/image/goods/商品_04.png', stampText: '热卖', category: 'birthday' },
+  { id: "goods_005", name: '草莓甜心', desc: '6寸', price: 308, image: '/image/goods/商品_05.png', stampText: '新品', category: 'kids' },
+  { id: "goods_006", name: '巧克力浓郁', desc: '6寸', price: 338, image: '/image/goods/商品_06.png', stampText: '热卖', category: 'couple' },
+  { id: "goods_007", name: '抹茶红豆', desc: '6寸', price: 298, image: '/image/goods/商品_07.png', stampText: 'NEW', category: 'seasonal' },
+  { id: "goods_008", name: '柠檬清新', desc: '6寸', price: 288, image: '/image/goods/商品_08.png', stampText: '热卖', category: 'giftbox' }
 ];
 
 // 规格选项（与 goods.js 保持一致）
 const SPEC_OPTIONS = {
   size: [
-    { name: '6号 2-3人份', price: 0 },
-    { name: '8号 4-6人份', price: 40 },
-    { name: '10号 8-10人份', price: 80 }
+    { name: '6寸 2-3人份', price: 0 },
+    { name: '8寸 4-6人份', price: 40 },
+    { name: '10寸 8-10人份', price: 80 }
   ],
   filling: ['桑椹莓莓', '芋泥啵啵', '布丁燕麦脆'],
   card: ['需要', '不需要'],
@@ -50,7 +51,7 @@ Page({
     showSpecPopup: false,
     currentEditItem: null,
     selectedSpec: {
-      size: '6号 2-3人份',
+      size: '6寸 2-3人份',
       filling: '桑椹莓莓',
       card: '不需要',
       candle: '数字蜡烛',
@@ -76,39 +77,36 @@ Page({
   loadCartData: function() {
     wx.showLoading({ title: '加载中...' });
 
-    wx.cloud.callFunction({
-      name: 'getCartList',
-      data: {},
-      success: res => {
-        wx.hideLoading();
-        if (res.result.success) {
-          this.convertToTempUrls(res.result.data);
-        } else {
-          console.error('[cart] 获取购物车失败:', res.result.errMsg);
-        }
-      },
-      fail: err => {
-        wx.hideLoading();
-        console.error('[cart] [loadCartData] 调用失败:', err);
-        wx.showToast({ title: '加载失败', icon: 'none' });
-      }
+    // 并行加载购物车和推荐商品
+    Promise.all([
+      this.callGetCartList(),
+      this.callGetRecommendGoods()
+    ]).catch(err => {
+      console.error('[cart] [loadCartData] 失败:', err);
+    }).finally(() => {
+      wx.hideLoading();
     });
-
-    // 加载推荐商品
-    this.loadRecommendItems();
   },
 
-  // 加载推荐商品
-  loadRecommendItems: function() {
-    wx.cloud.callFunction({
-      name: 'getRecommendGoods',
-      success: res => {
-        if (res.result.success) {
-          this.setData({ recommendItems: res.result.data });
-        }
-      },
-      fail: err => {
-        console.error('[cart] [loadRecommendItems] 失败:', err);
+  callGetCartList: function() {
+    return wx.cloud.callFunction({
+      name: 'getCartList',
+      data: {}
+    }).then(res => {
+      if (res.result.success) {
+        this.convertToTempUrls(res.result.data);
+      } else {
+        console.error('[cart] 获取购物车失败:', res.result.errMsg);
+      }
+    });
+  },
+
+  callGetRecommendGoods: function() {
+    return wx.cloud.callFunction({
+      name: 'getRecommendGoods'
+    }).then(res => {
+      if (res.result.success) {
+        this.setData({ recommendItems: res.result.data });
       }
     });
   },
@@ -129,7 +127,7 @@ Page({
     if (!specStr) return null;
     const parts = specStr.split(' · ');
     return {
-      size: parts[0] || '6号 2-3人份',
+      size: parts[0] || '6寸 2-3人份',
       filling: parts[1] || '桑椹莓莓',
       card: parts[2] || '不需要',
       candle: parts[3] || '数字蜡烛',
@@ -264,8 +262,8 @@ Page({
 
   // 点击推荐商品卡片 → 打开规格弹窗（加入购物车模式）
   onRecommendItemTap: function(e) {
-    const id = e.currentTarget.dataset.id;
-    const item = ALL_GOODS.find(g => g.id === id);
+    const idStr = String(e.currentTarget.dataset.id);
+    const item = ALL_GOODS.find(g => String(g.id) === idStr);
     if (!item) return;
 
     this.setData({
@@ -274,7 +272,7 @@ Page({
       totalPrice: item.price,
       isRecommendAdd: true,
       selectedSpec: {
-        size: '6号 2-3人份',
+        size: '6寸 2-3人份',
         filling: '桑椹莓莓',
         card: '不需要',
         candle: '数字蜡烛',
@@ -282,7 +280,7 @@ Page({
         packaging: '礼盒',
         cream: '无需增量'
       },
-      currentSpecCore: '6号 2-3人份 · 桑椹莓莓',
+      currentSpecCore: '6寸 2-3人份 · 桑椹莓莓',
       currentSpecExtra: '不需要 · 数字蜡烛 · 不需要 · 礼盒 · 无需增量',
       editTotalPrice: item.price
     });

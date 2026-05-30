@@ -41,16 +41,16 @@ Page({
 
     // 人气爆款
     hotProducts: [
-      { id: 1, name: '芭乐布蕾', spec: '5英寸 · 0.5磅', price: '298', image: '/image/goods/商品_01.png', tag: 'HOT' },
-      { id: 2, name: '蓝莓多多', spec: '5英寸 · 0.5磅', price: '328', image: '/image/goods/商品_02.png', tag: 'NEW' },
-      { id: 3, name: '茉莉玫瑰', spec: '5英寸 · 0.5磅', price: '288', image: '/image/goods/商品_03.png', tag: '热卖' },
-      { id: 4, name: '芒果奶油', spec: '5英寸 · 0.5磅', price: '318', image: '/image/goods/商品_04.png', tag: '热卖' }
+      { id: 1, name: '芭乐布蕾', spec: '6寸', price: '298', image: '/image/goods/商品_01.png', tag: 'HOT' },
+      { id: 2, name: '蓝莓多多', spec: '6寸', price: '328', image: '/image/goods/商品_02.png', tag: 'NEW' },
+      { id: 3, name: '茉莉玫瑰', spec: '6寸', price: '288', image: '/image/goods/商品_03.png', tag: '热卖' },
+      { id: 4, name: '芒果奶油', spec: '6寸', price: '318', image: '/image/goods/商品_04.png', tag: '热卖' }
     ],
 
     // 当季新品
     newProducts: [
-      { id: 1, name: '荔枝玫瑰', spec: '5英寸 · 0.5磅', price: '338', image: '/image/goods/商品_05.png', tag: 'NEW' },
-      { id: 2, name: '水蜜桃奶油', spec: '5英寸 · 0.5磅', price: '328', image: '/image/goods/商品_06.png', tag: 'NEW' },
+      { id: 1, name: '荔枝玫瑰', spec: '6寸', price: '338', image: '/image/goods/商品_05.png', tag: 'NEW' },
+      { id: 2, name: '水蜜桃奶油', spec: '6寸', price: '328', image: '/image/goods/商品_06.png', tag: 'NEW' },
       { id: 3, name: '车厘子双层', spec: '8英寸 · 1.5磅', price: '488', image: '/image/goods/商品_07.png', tag: 'NEW' }
     ],
 

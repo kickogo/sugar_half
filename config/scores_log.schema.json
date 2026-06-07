@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectionName": "scores_log",
+  "description": "积分变动日志表",
+  "fields": [
+    {
+      "fieldPath": "_id",
+      "type": "string",
+      "description": "记录ID（云数据库自动生成）",
+      "required": true
+    },
+    {
+      "fieldPath": "_openid",
+      "type": "string",
+      "description": "用户openid",
+      "required": true
+    },
+    {
+      "fieldPath": "type",
+      "type": "string",
+      "description": "变动类型：redeem=兑换/add=增加/deduct=扣除",
+      "required": true
+    },
+    {
+      "fieldPath": "title",
+      "type": "string",
+      "description": "变动说明（如兑换商品名）",
+      "required": true
+    },
+    {
+      "fieldPath": "scoreItemId",
+      "type": "string",
+      "description": "关联积分商品ID（redeem时有值）",
+      "required": false
+    },
+    {
+      "fieldPath": "scoresChange",
+      "type": "number",
+      "description": "变动积分（负数表示减少）",
+      "required": true
+    },
+    {
+      "fieldPath": "currentScores",
+      "type": "number",
+      "description": "变动后当前积分余额",
+      "required": true
+    },
+    {
+      "fieldPath": "createdAt",
+      "type": "number",
+      "description": "创建时间（时间戳）",
+      "required": false
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "_openid",
+      "fieldPaths": ["_openid"],
+      "type": "default"
+    },
+    {
+      "indexName": "createdAt",
+      "fieldPaths": ["createdAt"],
+      "type": "desc"
+    }
+  ]
+}

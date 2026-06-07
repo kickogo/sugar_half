@@ -41,27 +41,35 @@
     </view>
   </view>
 
-  <!-- 推荐商品 -->
+  <!-- 推荐商品 - 双列网格布局 -->
   <view class="recommend-section">
     <view class="recommend-header">
       <view class="header-line"></view>
       <text class="header-title">推荐商品</text>
       <view class="header-line"></view>
     </view>
-    <scroll-view class="recommend-scroll" scroll-x="true" white-space="nowrap">
-      <view class="recommend-card clickable" wx:for="{{recommendItems}}" wx:key="_id">
+    <view class="recommend-grid">
+      <view
+        class="recommend-card clickable"
+        wx:for="{{recommendItems}}"
+        wx:key="goodsId"
+        bindtap="onRecommendItemTap"
+        data-goods-id="{{item.goodsId}}"
+      >
         <view class="recommend-img-wrap">
-          <image class="recommend-img" src="{{item.imageUrl || item.image}}" mode="aspectFill"></image>
+          <image class="recommend-img" src="{{item.imageUrl}}" mode="aspectFill"></image>
         </view>
-        <text class="recommend-name">{{item.name}}</text>
-        <view class="recommend-price-row">
-          <text class="recommend-price">¥{{item.price}}</text>
-          <view class="cart-icon-wrap" catchtap="onRecommendItemTap" data-id="{{item.id}}">
-            <text class="cart-icon">🛒</text>
+        <view class="recommend-info">
+          <text class="recommend-name">{{item.name}}</text>
+          <view class="recommend-bottom">
+            <text class="recommend-price">¥{{item.price}}</text>
+            <view class="cart-icon-wrap" catchtap="onRecommendItemTap" data-goods-id="{{item.goodsId}}">
+              <text class="cart-icon">+</text>
+            </view>
           </view>
         </view>
       </view>
-    </scroll-view>
+    </view>
   </view>
 
   <!-- 吸底结算栏 -->

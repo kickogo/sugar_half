@@ -9,7 +9,6 @@ const _ = db.command;
  * 获取推荐商品列表
  * 规则：isRecommend=true 排前面，剩余按 buyCount 降序
  * 固定返回4个商品
- * 优化：合并为单次查询
  */
 exports.main = async (event, context) => {
   console.log('[云函数] [getRecommendGoods] 调用');
@@ -27,11 +26,17 @@ exports.main = async (event, context) => {
 
     const recommendItems = allRes.data || [];
 
-    // 返回结果带上推荐类型标识，使用 _id 作为 id 字段供前端查找
+    // 按规范返回：小驼峰字段，_id 映射为 goodsId
     const result = recommendItems.slice(0, limit).map(item => ({
-      ...item,
-      id: item._id,
-      _recommendType: item.isRecommend ? 'manual' : 'sales'
+      goodsId: item._id,
+      name: item.name,
+      price: item.price,
+      imageUrl: item.imageUrl,
+      desc: item.desc || item.tag || '',
+      stampText: item.stampText || '',
+      category: item.category || '',
+      specConfig: item.specConfig || null,
+      isRecommend: item.isRecommend || false
     }));
 
     return {

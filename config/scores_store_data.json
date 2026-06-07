@@ -1,0 +1,71 @@
+{
+  "description": "积分商城商品数据 — 可直接导入 scores_store 集合",
+  "scores_store": [
+    {
+      "title": "代金券 10 元",
+      "desc": "全场通用，满50元可用",
+      "imageUrl": "/image/points_mall/代金券_10_300积分.png",
+      "requiredScores": 300,
+      "stock": 100,
+      "redeemCount": 23,
+      "status": 1,
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "title": "代金券 20 元",
+      "desc": "全场通用，满100元可用",
+      "imageUrl": "/image/points_mall/代金券_20_600积分.png",
+      "requiredScores": 600,
+      "stock": 80,
+      "redeemCount": 45,
+      "status": 1,
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "title": "代金券 30 元",
+      "desc": "全场通用，满150元可用",
+      "imageUrl": "/image/points_mall/代金券_30_900积分.png",
+      "requiredScores": 900,
+      "stock": 50,
+      "redeemCount": 18,
+      "status": 1,
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "title": "代金券 50 元",
+      "desc": "全场通用，满200元可用",
+      "imageUrl": "/image/points_mall/代金券_50_1200积分.png",
+      "requiredScores": 1200,
+      "stock": 30,
+      "redeemCount": 12,
+      "status": 1,
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "title": "8寸蛋糕 8.8折",
+      "desc": "限购买8寸及以上蛋糕使用",
+      "imageUrl": "/image/points_mall/8寸蛋糕8.8折代金券_1500积分.png",
+      "requiredScores": 1500,
+      "stock": 20,
+      "redeemCount": 5,
+      "status": 1,
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "title": "8折代金券",
+      "desc": "全场通用，不限金额",
+      "imageUrl": "/image/points_mall/8折代金券_2000积分.png",
+      "requiredScores": 2000,
+      "stock": 10,
+      "redeemCount": 3,
+      "status": 1,
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    }
+  ]
+}

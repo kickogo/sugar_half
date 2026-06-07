@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectionName": "cart",
+  "description": "购物车表",
+  "fields": [
+    {
+      "fieldPath": "_id",
+      "type": "string",
+      "description": "记录ID（云数据库自动生成）",
+      "required": true
+    },
+    {
+      "fieldPath": "_openid",
+      "type": "string",
+      "description": "用户openid",
+      "required": true
+    },
+    {
+      "fieldPath": "goodsId",
+      "type": "string",
+      "description": "关联商品ID（goods._id）",
+      "required": true
+    },
+    {
+      "fieldPath": "spec",
+      "type": "object",
+      "description": "已选规格对象（size/filling/card/candle/mention/packaging/cream）",
+      "required": true
+    },
+    {
+      "fieldPath": "quantity",
+      "type": "number",
+      "description": "购买数量",
+      "required": true
+    },
+    {
+      "fieldPath": "createdAt",
+      "type": "number",
+      "description": "创建时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "updatedAt",
+      "type": "number",
+      "description": "更新时间（时间戳）",
+      "required": false
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "_openid",
+      "fieldPaths": ["_openid"],
+      "type": "default"
+    },
+    {
+      "indexName": "goodsId_spec",
+      "fieldPaths": ["goodsId", "spec"],
+      "type": "default"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectionName": "users",
+  "description": "用户表",
+  "fields": [
+    {
+      "fieldPath": "_id",
+      "type": "string",
+      "description": "用户ID（云数据库自动生成）",
+      "required": true
+    },
+    {
+      "fieldPath": "_openid",
+      "type": "string",
+      "description": "微信openid（唯一索引）",
+      "required": true
+    },
+    {
+      "fieldPath": "nickName",
+      "type": "string",
+      "description": "用户昵称",
+      "required": false
+    },
+    {
+      "fieldPath": "avatarUrl",
+      "type": "string",
+      "description": "头像URL",
+      "required": false
+    },
+    {
+      "fieldPath": "phone",
+      "type": "string",
+      "description": "联系电话",
+      "required": false
+    },
+    {
+      "fieldPath": "isVIP",
+      "type": "boolean",
+      "description": "是否VIP会员",
+      "required": true
+    },
+    {
+      "fieldPath": "scores",
+      "type": "number",
+      "description": "当前积分余额",
+      "required": true
+    },
+    {
+      "fieldPath": "createdAt",
+      "type": "number",
+      "description": "创建时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "updatedAt",
+      "type": "number",
+      "description": "更新时间（时间戳）",
+      "required": false
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "_openid_unique",
+      "fieldPaths": ["_openid"],
+      "type": "unique"
+    }
+  ]
+}

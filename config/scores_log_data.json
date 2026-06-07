@@ -1,0 +1,4 @@
+{
+  "description": "积分变动日志 — 可直接导入 scores_log 集合（空数据，按业务发生创建）",
+  "scores_log": []
+}

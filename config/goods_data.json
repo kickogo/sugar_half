@@ -1,0 +1,253 @@
+{
+  "description": "商品数据初始化文件 — 可直接导入 goods 集合",
+  "goods": [
+    {
+      "name": "芭乐布蕾",
+      "price": 298,
+      "imageUrl": "/image/goods/商品_01.png",
+      "status": 1,
+      "isRecommend": true,
+      "buyCount": 156,
+      "category": "birthday",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "蓝莓多多",
+      "price": 328,
+      "imageUrl": "/image/goods/商品_02.png",
+      "status": 1,
+      "isRecommend": true,
+      "buyCount": 132,
+      "category": "couple",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "茉莉玫瑰",
+      "price": 288,
+      "imageUrl": "/image/goods/商品_03.png",
+      "status": 1,
+      "isRecommend": false,
+      "buyCount": 98,
+      "category": "celebration",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "芒果奶油",
+      "price": 318,
+      "imageUrl": "/image/goods/商品_04.png",
+      "status": 1,
+      "isRecommend": false,
+      "buyCount": 145,
+      "category": "birthday",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "草莓甜心",
+      "price": 308,
+      "imageUrl": "/image/goods/商品_05.png",
+      "status": 1,
+      "isRecommend": false,
+      "buyCount": 87,
+      "category": "kids",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "巧克力浓郁",
+      "price": 338,
+      "imageUrl": "/image/goods/商品_06.png",
+      "status": 1,
+      "isRecommend": true,
+      "buyCount": 119,
+      "category": "couple",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "抹茶红豆",
+      "price": 298,
+      "imageUrl": "/image/goods/商品_07.png",
+      "status": 1,
+      "isRecommend": false,
+      "buyCount": 76,
+      "category": "seasonal",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    },
+    {
+      "name": "柠檬清新",
+      "price": 288,
+      "imageUrl": "/image/goods/商品_08.png",
+      "status": 1,
+      "isRecommend": false,
+      "buyCount": 64,
+      "category": "giftbox",
+      "desc": "6寸",
+      "specConfig": {
+        "size": [
+          { "name": "6寸 2-3人份", "price": 0 },
+          { "name": "8寸 4-6人份", "price": 40 },
+          { "name": "10寸 8-10人份", "price": 80 }
+        ],
+        "filling": ["桑椹莓莓", "芋泥啵啵", "布丁燕麦脆"],
+        "card": ["需要", "不需要"],
+        "candle": ["数字蜡烛", "长条蜡烛", "无需蜡烛"],
+        "mention": ["需要", "不需要"],
+        "packaging": [
+          { "name": "礼盒", "price": 0 },
+          { "name": "保冷包", "price": 5 }
+        ],
+        "cream": [
+          { "name": "无需增量", "price": 0 },
+          { "name": "加奶油1份", "price": 8 }
+        ]
+      },
+      "createdAt": 1716500000000,
+      "updatedAt": 1716500000000
+    }
+  ]
+}

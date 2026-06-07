@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectionName": "orders",
+  "description": "订单表",
+  "fields": [
+    {
+      "fieldPath": "_id",
+      "type": "string",
+      "description": "订单ID（云数据库自动生成）",
+      "required": true
+    },
+    {
+      "fieldPath": "_openid",
+      "type": "string",
+      "description": "用户openid",
+      "required": true
+    },
+    {
+      "fieldPath": "items",
+      "type": "array",
+      "description": "订单商品列表",
+      "required": true
+    },
+    {
+      "fieldPath": "totalPrice",
+      "type": "number",
+      "description": "订单总价（元）",
+      "required": true
+    },
+    {
+      "fieldPath": "address",
+      "type": "object",
+      "description": "收货地址信息",
+      "required": true
+    },
+    {
+      "fieldPath": "phone",
+      "type": "string",
+      "description": "联系电话",
+      "required": true
+    },
+    {
+      "fieldPath": "remark",
+      "type": "string",
+      "description": "订单备注",
+      "required": false
+    },
+    {
+      "fieldPath": "status",
+      "type": "string",
+      "description": "订单状态：PENDING_PAY/PAID/BAKING/SHIPPING/FINISHED/CANCELLED",
+      "required": true
+    },
+    {
+      "fieldPath": "createdAt",
+      "type": "number",
+      "description": "创建时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "paidAt",
+      "type": "number",
+      "description": "支付时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "updatedAt",
+      "type": "number",
+      "description": "更新时间（时间戳）",
+      "required": false
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "_openid",
+      "fieldPaths": ["_openid"],
+      "type": "default"
+    },
+    {
+      "indexName": "status",
+      "fieldPaths": ["status"],
+      "type": "default"
+    },
+    {
+      "indexName": "createdAt",
+      "fieldPaths": ["createdAt"],
+      "type": "desc"
+    }
+  ]
+}

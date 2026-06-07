@@ -169,51 +169,56 @@
   color: var(--text-dark);
 }
 
-/* ---------- 推荐商品 ---------- */
+/* ---------- 推荐商品 - 双列网格布局 ---------- */
 .recommend-section {
-  padding: 30rpx 40rpx 200rpx;
+  padding: 40rpx 30rpx 200rpx;
+  background: linear-gradient(180deg, #FFFEF5 0%, #FFF8E1 100%);
 }
 
 .recommend-header {
   display: flex;
   align-items: center;
-  margin-bottom: 24rpx;
+  margin-bottom: 32rpx;
 }
 
 .header-line {
   flex: 1;
-  height: 1rpx;
-  background: var(--text-grey);
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
 }
 
 .header-title {
-  font-size: 28rpx;
-  color: var(--text-dark);
-  padding: 0 20rpx;
+  font-size: 32rpx;
+  color: var(--active-red);
+  padding: 0 24rpx;
   font-weight: bold;
+  letter-spacing: 2rpx;
 }
 
-.recommend-scroll {
-  white-space: nowrap;
-  width: 100%;
+/* 双列网格容器 */
+.recommend-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10rpx;
 }
 
+/* 商品卡片 */
 .recommend-card {
-  display: inline-block;
-  width: 200rpx;
-  margin-right: 20rpx;
+  width: 48%;
+  margin-bottom: 24rpx;
   background: var(--white);
-  border: var(--border-thick);
-  border-radius: var(--card-radius);
-  box-shadow: var(--retro-shadow);
-  overflow: visible;
-  vertical-align: top;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(226, 125, 154, 0.15);
+  overflow: hidden;
+  position: relative;
 }
 
 .recommend-img-wrap {
-  width: 200rpx;
-  height: 200rpx;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  background: #FFF0F3;
 }
 
 .recommend-img {
@@ -221,49 +226,53 @@
   height: 100%;
 }
 
-.cart-icon-wrap {
-  position: relative;
-  width: 56rpx;
-  height: 56rpx;
-  border-radius: var(--btn-radius);
-  background: var(--primary-pink);
-  border: 3rpx solid var(--active-red);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: var(--retro-shadow);
-  z-index: 1;
-  flex-shrink: 0;
-}
-
-.cart-icon {
-  font-size: 28rpx;
+/* 商品信息区 */
+.recommend-info {
+  padding: 16rpx 16rpx 20rpx;
 }
 
 .recommend-name {
   display: block;
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: var(--text-dark);
-  padding: 12rpx 12rpx 6rpx;
-  text-align: left;
+  font-weight: bold;
+  margin-bottom: 12rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.recommend-price-row {
+/* 价格+购物车行 */
+.recommend-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12rpx 12rpx;
 }
 
 .recommend-price {
-  display: block;
-  font-size: 26rpx;
+  font-size: 30rpx;
   font-weight: bold;
   color: var(--active-red);
-  text-align: left;
+}
+
+/* 购物车按钮 - 适配卡片比例 */
+.cart-icon-wrap {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-pink) 0%, #E27D9A 100%);
+  border: 3rpx solid var(--active-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 8rpx rgba(122, 34, 56, 0.3);
+}
+
+.cart-icon {
+  font-size: 28rpx;
+  color: var(--white);
+  font-weight: bold;
+  line-height: 1;
 }
 
 /* ---------- 吸底结算栏 ---------- */

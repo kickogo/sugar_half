@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectionName": "scores_store",
+  "description": "积分商城商品表",
+  "fields": [
+    {
+      "fieldPath": "_id",
+      "type": "string",
+      "description": "商品ID（云数据库自动生成）",
+      "required": true
+    },
+    {
+      "fieldPath": "title",
+      "type": "string",
+      "description": "商品标题",
+      "required": true
+    },
+    {
+      "fieldPath": "desc",
+      "type": "string",
+      "description": "商品描述/详情",
+      "required": false
+    },
+    {
+      "fieldPath": "imageUrl",
+      "type": "string",
+      "description": "商品图片（云存储fileID或本地路径）",
+      "required": true
+    },
+    {
+      "fieldPath": "requiredScores",
+      "type": "number",
+      "description": "所需积分数量",
+      "required": true
+    },
+    {
+      "fieldPath": "stock",
+      "type": "number",
+      "description": "剩余库存",
+      "required": true
+    },
+    {
+      "fieldPath": "redeemCount",
+      "type": "number",
+      "description": "已兑换次数",
+      "required": true
+    },
+    {
+      "fieldPath": "status",
+      "type": "number",
+      "description": "1=上架 0=下架",
+      "required": true
+    },
+    {
+      "fieldPath": "expireTime",
+      "type": "number",
+      "description": "过期时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "createdAt",
+      "type": "number",
+      "description": "创建时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "updatedAt",
+      "type": "number",
+      "description": "更新时间（时间戳）",
+      "required": false
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "status",
+      "fieldPaths": ["status"],
+      "type": "default"
+    }
+  ]
+}

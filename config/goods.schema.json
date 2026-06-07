@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0.0",
+  "collectionName": "goods",
+  "description": "商品表",
+  "fields": [
+    {
+      "fieldPath": "_id",
+      "type": "string",
+      "description": "商品ID（云数据库自动生成）",
+      "required": true
+    },
+    {
+      "fieldPath": "name",
+      "type": "string",
+      "description": "商品名称",
+      "required": true
+    },
+    {
+      "fieldPath": "price",
+      "type": "number",
+      "description": "基础价格（元）",
+      "required": true
+    },
+    {
+      "fieldPath": "imageUrl",
+      "type": "string",
+      "description": "商品图片（云存储fileID）",
+      "required": true
+    },
+    {
+      "fieldPath": "status",
+      "type": "number",
+      "description": "1=上架 0=下架",
+      "required": true
+    },
+    {
+      "fieldPath": "isRecommend",
+      "type": "boolean",
+      "description": "是否推荐到首页",
+      "required": true
+    },
+    {
+      "fieldPath": "buyCount",
+      "type": "number",
+      "description": "累计销售数量",
+      "required": true
+    },
+    {
+      "fieldPath": "category",
+      "type": "string",
+      "description": "分类ID（如birthday/celebration/couple/kids/giftbox/seasonal）",
+      "required": true
+    },
+    {
+      "fieldPath": "desc",
+      "type": "string",
+      "description": "商品描述（替代原tag字段）",
+      "required": false
+    },
+    {
+      "fieldPath": "specConfig",
+      "type": "object",
+      "description": "规格配置（size/filling/card/candle/mention/packaging/cream）",
+      "required": true
+    },
+    {
+      "fieldPath": "createdAt",
+      "type": "number",
+      "description": "创建时间（时间戳）",
+      "required": false
+    },
+    {
+      "fieldPath": "updatedAt",
+      "type": "number",
+      "description": "更新时间（时间戳）",
+      "required": false
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "category_status",
+      "fieldPaths": ["category", "status"],
+      "type": "default"
+    },
+    {
+      "indexName": "isRecommend",
+      "fieldPaths": ["isRecommend"],
+      "type": "default"
+    },
+    {
+      "indexName": "buyCount",
+      "fieldPaths": ["buyCount"],
+      "type": "desc"
+    }
+  ]
+}

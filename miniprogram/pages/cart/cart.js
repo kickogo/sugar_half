@@ -1,18 +1,8 @@
 // pages/cart/cart.js
 const db = wx.cloud.database();
 
-// 静态商品数据（来自 goods.js，所有商品共用）
-// id 使用与数据库 _id 对应的字符串格式
-const ALL_GOODS = [
-  { id: "goods_001", name: '芭乐布蕾', desc: '6寸', price: 298, image: '/image/goods/商品_01.png', stampText: 'HOT', category: 'birthday' },
-  { id: "goods_002", name: '蓝莓多多', desc: '6寸', price: 328, image: '/image/goods/商品_02.png', stampText: 'NEW', category: 'couple' },
-  { id: "goods_003", name: '茉莉玫瑰', desc: '6寸', price: 288, image: '/image/goods/商品_03.png', stampText: '热卖', category: 'celebration' },
-  { id: "goods_004", name: '芒果奶油', desc: '6寸', price: 318, image: '/image/goods/商品_04.png', stampText: '热卖', category: 'birthday' },
-  { id: "goods_005", name: '草莓甜心', desc: '6寸', price: 308, image: '/image/goods/商品_05.png', stampText: '新品', category: 'kids' },
-  { id: "goods_006", name: '巧克力浓郁', desc: '6寸', price: 338, image: '/image/goods/商品_06.png', stampText: '热卖', category: 'couple' },
-  { id: "goods_007", name: '抹茶红豆', desc: '6寸', price: 298, image: '/image/goods/商品_07.png', stampText: 'NEW', category: 'seasonal' },
-  { id: "goods_008", name: '柠檬清新', desc: '6寸', price: 288, image: '/image/goods/商品_08.png', stampText: '热卖', category: 'giftbox' }
-];
+// 静态商品数据（来自云函数返回的 goodsId）
+const ALL_GOODS = [];
 
 // 规格选项（与 goods.js 保持一致）
 const SPEC_OPTIONS = {
@@ -230,10 +220,6 @@ Page({
     const item = this.data.cartItems.find(item => item._id === id);
     if (!item) return;
 
-    // 根据 goodsId 找到静态商品数据
-    const goodsItem = ALL_GOODS.find(g => g.id === item.goodsId);
-    if (!goodsItem) return;
-
     // 解析现有规格为 selectedSpec
     const parsedSpec = this.parseSpecToSelectedSpec(item.spec);
     const selectedSpec = parsedSpec || this.data.selectedSpec;
@@ -242,7 +228,7 @@ Page({
 
     // 计算当前规格价格
     const specOptions = { size: SPEC_OPTIONS.size, packaging: SPEC_OPTIONS.packaging, cream: SPEC_OPTIONS.cream };
-    let total = goodsItem.price;
+    let total = item.price;
     const sizeOpt = SPEC_OPTIONS.size.find(s => s.name === selectedSpec.size);
     if (sizeOpt) total += sizeOpt.price;
     const packOpt = SPEC_OPTIONS.packaging.find(p => p.name === selectedSpec.packaging);
@@ -256,20 +242,20 @@ Page({
       selectedSpec,
       currentSpecCore: coreSpec,
       currentSpecExtra: extraSpec,
-      editTotalPrice: total
+      editTotalPrice: total,
+      isRecommendAdd: false
     });
   },
 
   // 点击推荐商品卡片 → 打开规格弹窗（加入购物车模式）
   onRecommendItemTap: function(e) {
-    const idStr = String(e.currentTarget.dataset.id);
-    const item = ALL_GOODS.find(g => String(g.id) === idStr);
+    const goodsId = e.currentTarget.dataset.goodsId;
+    const item = this.data.recommendItems.find(g => g.goodsId === goodsId);
     if (!item) return;
 
     this.setData({
       showSpecPopup: true,
       currentEditItem: item,
-      totalPrice: item.price,
       isRecommendAdd: true,
       selectedSpec: {
         size: '6寸 2-3人份',
@@ -312,12 +298,12 @@ Page({
     if (isRecommendAdd) {
       // 推荐商品点击"加入购物车" → 新增商品到购物车
       const newItem = {
-        goodsId: currentEditItem.id,
+        goodsId: currentEditItem.goodsId,
         name: currentEditItem.name,
         spec: specStr,
         price: editTotalPrice,
         quantity: 1,
-        imageUrl: currentEditItem.image
+        imageUrl: currentEditItem.imageUrl
       };
 
       wx.cloud.callFunction({

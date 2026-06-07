@@ -4,9 +4,9 @@
 
 /* ---------- Color Palette ---------- */
 page {
-  --bg-main: #FFF2F5;
-  --primary-pink: #E27D9A;
-  --active-red: #7A2238;
+  --bg-main: #FFF8E1;
+  --primary-pink: #E8B86D;
+  --active-red: #B8860B;
   --text-dark: #333333;
   --text-grey: #666666;
   --white: #FFFFFF;
@@ -15,8 +15,8 @@ page {
   /* ---------- Border, Radius & Shadow ---------- */
   --card-radius: 24rpx;
   --btn-radius: 16rpx;
-  --border-thick: 4rpx solid #7A2238;
-  --retro-shadow: 6rpx 6rpx 0rpx #7A2238;
+  --border-thick: 4rpx solid #B8860B;
+  --retro-shadow: 6rpx 6rpx 0rpx #B8860B;
 
   /* ---------- Typography ---------- */
   --font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
